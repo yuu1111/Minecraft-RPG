@@ -26,23 +26,25 @@ public class JobCommand implements CommandExecutor {
         FileConfiguration config = uuid.getConfig();
         Player p = (Player) sender;
         UUID id = p.getUniqueId();
-
-        plugin.saveConfig();
         if (args.length != 0) {
             if (args[0].equalsIgnoreCase("change")) {
                     switch (args[1]) {
 
                         case "warrior":
                             config.set("UUID." + id + ".Job", "warrior");
+                            uuid.saveConfig();
                             break;
                         case "knight":
                             config.set("UUID." + id + ".Job", "knight");
+                            uuid.saveConfig();
                             break;
                         case "witch":
                             config.set("UUID." + id + ".Job", "witch");
+                            uuid.saveConfig();
                             break;
                         case "magician":
                             config.set("UUID." + id + ".Job", "magician");
+                            uuid.saveConfig();
                             break;
                             default:
 
