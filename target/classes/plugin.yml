@@ -1,0 +1,6 @@
+name: RPG
+version: 1.0.0
+main: yuu.rpg.RPG
+commands:
+  job:
+    default: true
