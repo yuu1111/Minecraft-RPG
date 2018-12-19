@@ -15,7 +15,7 @@ public class JobCommand implements CommandExecutor {
     private RPG plugin;
     CustomConfig uuid;
 
-    public JobCommand(RPG pl) {
+    JobCommand(RPG pl) {
         plugin = pl;
     }
 
@@ -26,34 +26,48 @@ public class JobCommand implements CommandExecutor {
         FileConfiguration config = uuid.getConfig();
         Player p = (Player) sender;
         UUID id = p.getUniqueId();
+
         if (args.length != 0) {
             if (args[0].equalsIgnoreCase("change")) {
-                    switch (args[1]) {
-
-                        case "warrior":
-                            config.set("UUID." + id + ".Job", "warrior");
-                            uuid.saveConfig();
-                            break;
-                        case "knight":
-                            config.set("UUID." + id + ".Job", "knight");
-                            uuid.saveConfig();
-                            break;
-                        case "witch":
-                            config.set("UUID." + id + ".Job", "witch");
-                            uuid.saveConfig();
-                            break;
-                        case "magician":
-                            config.set("UUID." + id + ".Job", "magician");
-                            uuid.saveConfig();
-                            break;
-                            default:
-
-                                break;
-                    }
-                }
+                job(args[1], config, p);
             }
-
-            return true;
+            if (args[0].equalsIgnoreCase("check")) {
+            p.sendMessage(config.getString("UUID."+ id +".Job"));
+            }
         }
+        return true;
     }
+
+    public void job(String str, FileConfiguration config, Player p) {
+
+        UUID id = p.getUniqueId();
+
+        switch (str) {
+            case "warrior":
+                config.set("UUID." + id + ".Job", "warrior");
+                p.sendMessage("ウォーリアになりました");
+                uuid.saveConfig();
+                break;
+            case "knight":
+                config.set("UUID." + id + ".Job", "knight");
+                p.sendMessage("ナイトになりました");
+                uuid.saveConfig();
+                break;
+            case "witch":
+                config.set("UUID." + id + ".Job", "witch");
+                uuid.saveConfig();
+                p.sendMessage("ウィッチになりました");
+                break;
+            case "magician":
+                config.set("UUID." + id + ".Job", "magician");
+                p.sendMessage("マジシャンになりました");
+                uuid.saveConfig();
+                break;
+            default:
+                p.sendMessage("存在しない職業です");
+                break;
+        }
+        return;
+    }
+}
 
