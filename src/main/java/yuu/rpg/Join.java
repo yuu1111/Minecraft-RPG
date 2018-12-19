@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import java.util.UUID;
 
-public class Join  implements Listener {
+public class Join implements Listener {
 
     private RPG plugin;
     CustomConfig uuid;

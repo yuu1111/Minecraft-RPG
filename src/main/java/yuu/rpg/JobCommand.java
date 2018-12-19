@@ -14,7 +14,9 @@ public class JobCommand implements CommandExecutor {
 
     private RPG plugin;
     CustomConfig uuid;
-
+    FileConfiguration config;
+    Player p;
+    UUID id;
     JobCommand(RPG pl) {
         plugin = pl;
     }
@@ -23,13 +25,13 @@ public class JobCommand implements CommandExecutor {
 
 
         uuid = new CustomConfig(plugin, "UUID.yml");
-        FileConfiguration config = uuid.getConfig();
-        Player p = (Player) sender;
-        UUID id = p.getUniqueId();
+        config = uuid.getConfig();
+        p = (Player) sender;
+        id = p.getUniqueId();
 
         if (args.length != 0) {
             if (args[0].equalsIgnoreCase("change")) {
-                job(args[1], config, p);
+                job(args[1]);
             }
             if (args[0].equalsIgnoreCase("check")) {
             p.sendMessage(config.getString("UUID."+ id +".Job"));
@@ -38,7 +40,7 @@ public class JobCommand implements CommandExecutor {
         return true;
     }
 
-    public void job(String str, FileConfiguration config, Player p) {
+    public void job(String str) {
 
         UUID id = p.getUniqueId();
 

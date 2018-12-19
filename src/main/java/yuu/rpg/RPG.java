@@ -14,6 +14,7 @@ public final class RPG extends JavaPlugin {
         new CustomConfig(this, "UUID.yml").saveDefaultConfig();
 
         new Join(this);
+        new SignJob(this);
         getServer().getPluginManager().registerEvents(new DeathRespawn(), this);
         getCommand("job").setExecutor(new JobCommand(this));
     }
