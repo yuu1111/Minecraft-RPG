@@ -15,7 +15,8 @@ public final class RPG extends JavaPlugin {
 
         new Join(this);
         new SignJob(this);
-        getServer().getPluginManager().registerEvents(new DeathRespawn(), this);
+        new DeathRespawn(this);
+
         getCommand("job").setExecutor(new JobCommand(this));
     }
 

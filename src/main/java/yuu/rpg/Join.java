@@ -1,6 +1,8 @@
 package yuu.rpg;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -33,10 +35,12 @@ public class Join implements Listener {
         if (Job == null) {
             config.set("UUID." + id + ".Job", "Crafter");
             uuid.saveConfig();
-
+            World w = p.getLocation().getWorld();
+            Location spawnpoint = new Location(w, -315, 66, -444);
+            p.setBedSpawnLocation(spawnpoint, true);
             // プレイヤーに本を作成して渡す
             ItemStack item = new ItemStack(Material.WRITTEN_BOOK);
-            BookMeta meta = (BookMeta)item.getItemMeta();
+            BookMeta meta = (BookMeta) item.getItemMeta();
             meta.setAuthor("yuu_111");
             meta.setDisplayName("チュートリアル");
             meta.addPage(new String[]{

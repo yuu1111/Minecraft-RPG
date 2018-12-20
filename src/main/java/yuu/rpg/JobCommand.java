@@ -1,6 +1,8 @@
 package yuu.rpg;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -20,6 +22,7 @@ public class JobCommand implements CommandExecutor {
     FileConfiguration config;
     Player p;
     UUID id;
+
     JobCommand(RPG pl) {
         plugin = pl;
     }
@@ -54,6 +57,10 @@ public class JobCommand implements CommandExecutor {
                                 "ccc"});
                 item.setItemMeta(meta);
                 p.getInventory().addItem(item);
+            } else if (args[0].equalsIgnoreCase("spawn")) {
+                World w = p.getLocation().getWorld();
+                Location spawnpoint = new Location(w,-315,66,-444);
+                p.setBedSpawnLocation(spawnpoint, true);
             }
         }
         return true;
