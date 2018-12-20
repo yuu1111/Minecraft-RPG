@@ -1,10 +1,13 @@
 package yuu.rpg;
 
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -30,46 +33,30 @@ public class JobCommand implements CommandExecutor {
         id = p.getUniqueId();
 
         if (args.length != 0) {
-            if (args[0].equalsIgnoreCase("change")) {
-                job(args[1]);
-            }
             if (args[0].equalsIgnoreCase("check")) {
-            p.sendMessage(config.getString("UUID."+ id +".Job"));
+                p.sendMessage(config.getString("UUID." + id + ".Job"));
+            } else if (args[0].equalsIgnoreCase("book")) {
+                // プレイヤーに本を作成して渡す
+                ItemStack item = new ItemStack(Material.WRITTEN_BOOK);
+                BookMeta meta = (BookMeta) item.getItemMeta();
+                meta.setAuthor("yuu_111");
+                meta.setDisplayName("チュートリアル");
+                meta.addPage(new String[]{
+                        // 1ページ目
+                        "チュートリアル\n" +
+                                "まず最初に奥の方の看板で職業を選びましょう\n" +
+                                "各職業についての説明は次のページ以降にあります",
+                        // 2ページ目
+                        "戦士\n" +
+                                "\n" +
+                                "基本的な剣などの武器を扱える職業です\n" +
+                                "高い筋力を生かして弓を高い威力で使えます\n" +
+                                "ccc"});
+                item.setItemMeta(meta);
+                p.getInventory().addItem(item);
             }
         }
         return true;
-    }
-
-    public void job(String str) {
-
-        UUID id = p.getUniqueId();
-
-        switch (str) {
-            case "warrior":
-                config.set("UUID." + id + ".Job", "warrior");
-                p.sendMessage("ウォーリアになりました");
-                uuid.saveConfig();
-                break;
-            case "knight":
-                config.set("UUID." + id + ".Job", "knight");
-                p.sendMessage("ナイトになりました");
-                uuid.saveConfig();
-                break;
-            case "witch":
-                config.set("UUID." + id + ".Job", "witch");
-                uuid.saveConfig();
-                p.sendMessage("ウィッチになりました");
-                break;
-            case "magician":
-                config.set("UUID." + id + ".Job", "magician");
-                p.sendMessage("マジシャンになりました");
-                uuid.saveConfig();
-                break;
-            default:
-                p.sendMessage("存在しない職業です");
-                break;
-        }
-        return;
     }
 }
 
