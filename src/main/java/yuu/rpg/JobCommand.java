@@ -59,7 +59,7 @@ public class JobCommand implements CommandExecutor {
                 p.getInventory().addItem(item);
             } else if (args[0].equalsIgnoreCase("spawn")) {
                 World w = p.getLocation().getWorld();
-                Location spawnpoint = new Location(w,-315,66,-444);
+                Location spawnpoint = new Location(w,-315,67,-444);
                 p.setBedSpawnLocation(spawnpoint, true);
             }
         }

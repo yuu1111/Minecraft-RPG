@@ -26,7 +26,6 @@ public class DeathRespawn implements Listener {
     private RPG plugin;
     CustomConfig uuid;
 
-
     DeathRespawn(RPG pl) {
         plugin = pl;
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
@@ -35,13 +34,11 @@ public class DeathRespawn implements Listener {
     @EventHandler
     public void onPlayerDeathEvent(PlayerDeathEvent e) {
         Player p = e.getEntity().getPlayer();
-        FileConfiguration config = uuid.getConfig();
         p.spigot().respawn();
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler
     public void onPlayerInteractEvent(PlayerInteractEvent e) {
-
         if (e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         Block clickedBlock = e.getClickedBlock();
         Material material = clickedBlock.getType();
