@@ -56,7 +56,8 @@ public class Join implements Listener {
 
             uuid.saveConfig();
             World w = p.getLocation().getWorld();
-            Location spawnpoint = new Location(w, -315, 66, -444);
+            Location spawnpoint = new Location(w, -315, 67, -444);
+            p.teleport(spawnpoint);
             p.setBedSpawnLocation(spawnpoint, true);
             // プレイヤーに本を作成して渡す
             ItemStack item = new ItemStack(Material.WRITTEN_BOOK);

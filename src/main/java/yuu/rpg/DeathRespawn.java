@@ -16,6 +16,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 
+import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,6 +26,7 @@ public class DeathRespawn implements Listener {
 
     private RPG plugin;
     CustomConfig uuid;
+    FileConfiguration config;
 
     DeathRespawn(RPG pl) {
         plugin = pl;
@@ -35,6 +37,8 @@ public class DeathRespawn implements Listener {
     public void onPlayerDeathEvent(PlayerDeathEvent e) {
         Player p = e.getEntity().getPlayer();
         p.spigot().respawn();
+        Location spawnpoint = new Location(p.getLocation().getWorld(), -315, 67, -444);
+        p.teleport(spawnpoint);
     }
 
     @EventHandler
@@ -42,10 +46,16 @@ public class DeathRespawn implements Listener {
         if (e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         Block clickedBlock = e.getClickedBlock();
         Material material = clickedBlock.getType();
-        if (material == Material.BED) {
+        if (material == Material.STAINED_GLASS) {
+            uuid = new CustomConfig(plugin, "UUID.yml");
             Player p = e.getPlayer();
-            Location loc = e.getClickedBlock().getLocation();
-            p.setBedSpawnLocation(loc, true);
+            config = uuid.getConfig();
+            UUID id = p.getUniqueId();
+
+            config.set("UUID." + id + ".Spawn.x", e.getClickedBlock().getX());
+            config.set("UUID." + id + ".Spawn.y", e.getClickedBlock().getY());
+            config.set("UUID." + id + ".Spawn.z", e.getClickedBlock().getZ());
+            uuid.saveConfig();
             p.sendMessage("スポーン地点を設定しました");
         }
     }

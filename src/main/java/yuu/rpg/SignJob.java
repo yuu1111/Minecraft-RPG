@@ -57,7 +57,6 @@ public class SignJob implements Listener {
                 ymlcheck(Job);
                 config.set("UUID." + id + ".Lv.WarriorLv", p.getLevel());
                 config.set("UUID." + id + ".Lv.WarriorExp", p.getExp());
-
                 break;
 
             case "Mage":
@@ -95,8 +94,6 @@ public class SignJob implements Listener {
                 config.set("UUID." + id + ".Lv.CrafterLv", p.getLevel());
                 config.set("UUID." + id + ".Lv.CrafterExp", p.getExp());
                 break;
-
-
         }
 
         switch (str) {
@@ -108,7 +105,6 @@ public class SignJob implements Listener {
 
                 config.set("UUID." + id + ".Job", "Warrior");
                 p.sendMessage("戦士になりました");
-                uuid.saveConfig();
                 break;
 
             case "魔術師":
@@ -118,7 +114,6 @@ public class SignJob implements Listener {
 
                 config.set("UUID." + id + ".Job", "Mage");
                 p.sendMessage("魔術師になりました");
-                uuid.saveConfig();
                 break;
 
             case "狩人":
@@ -128,7 +123,6 @@ public class SignJob implements Listener {
 
                 config.set("UUID." + id + ".Job", "Hunter");
                 p.sendMessage("狩人になりました");
-                uuid.saveConfig();
                 break;
 
             case "村人":
@@ -138,7 +132,6 @@ public class SignJob implements Listener {
 
                 config.set("UUID." + id + ".Job", "Villager");
                 p.sendMessage("村人になりました");
-                uuid.saveConfig();
                 break;
 
             case "放浪者":
@@ -148,7 +141,6 @@ public class SignJob implements Listener {
 
                 config.set("UUID." + id + ".Job", "Wanderer");
                 p.sendMessage("放浪者になりました");
-                uuid.saveConfig();
                 break;
 
             case "騎士":
@@ -158,7 +150,6 @@ public class SignJob implements Listener {
 
                 config.set("UUID." + id + ".Job", "Knight");
                 p.sendMessage("騎士になりました");
-                uuid.saveConfig();
                 break;
 
             case "クラフター":
@@ -168,10 +159,10 @@ public class SignJob implements Listener {
 
                 config.set("UUID." + id + ".Job", "Crafter");
                 p.sendMessage("クラフターになりました");
-                uuid.saveConfig();
                 break;
 
         }
+        uuid.saveConfig();
     }
 
     private void ymlcheck(String str) {
