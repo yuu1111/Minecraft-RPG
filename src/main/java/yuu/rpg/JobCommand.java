@@ -59,11 +59,20 @@ public class JobCommand implements CommandExecutor {
                 p.getInventory().addItem(item);
             } else if (args[0].equalsIgnoreCase("spawn")) {
                 World w = p.getLocation().getWorld();
-                Location spawnpoint = new Location(w,-315,67,-444);
+                Location spawnpoint = new Location(w, -315, 67, -444);
                 p.setBedSpawnLocation(spawnpoint, true);
+            } else if (args[0].equalsIgnoreCase("exp")) {
+                float exp = p.getExp();
+                String exp2 = String.valueOf(exp);
+                int plv = p.getLevel();
+                String plv2 = String.valueOf(plv);
+                p.sendMessage("経験値:" + exp2);
+                p.sendMessage("レベル:" + plv2);
+
             }
         }
         return true;
     }
 }
+
 

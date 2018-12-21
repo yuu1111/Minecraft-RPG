@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -34,6 +35,25 @@ public class Join implements Listener {
         String Job = config.getString("UUID." + id + ".Job");
         if (Job == null) {
             config.set("UUID." + id + ".Job", "Crafter");
+
+         /*   config.set("UUID." + id + ".Lv.WarriorLv", "0");
+            config.set("UUID." + id + ".Lv.WarriorExp", "0");
+
+            config.set("UUID." + id + ".Lv.MageLv", "0");
+            config.set("UUID." + id + ".Lv.MageExp", "0");
+
+            config.set("UUID." + id + ".Lv.HunterLv", "0");
+            config.set("UUID." + id + ".Lv.HunterExp", "0");
+
+            config.set("UUID." + id + ".Lv.VillagerLv", "0");
+            config.set("UUID." + id + ".Lv.VillagerExp", "0");
+
+            config.set("UUID." + id + ".Lv.WandererLv", "0");
+            config.set("UUID." + id + ".Lv.WandererExp", "0");
+
+            config.set("UUID." + id + ".Lv.CrafterLv", "0");
+            config.set("UUID." + id + ".Lv.CrafterExp", "0");*/
+
             uuid.saveConfig();
             World w = p.getLocation().getWorld();
             Location spawnpoint = new Location(w, -315, 66, -444);
