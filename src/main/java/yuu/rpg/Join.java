@@ -35,6 +35,10 @@ public class Join implements Listener {
         String Job = config.getString("UUID." + id + ".Job");
         if (Job == null) {
             config.set("UUID." + id + ".Job", "Crafter");
+            config.set("UUID." + id + ".Spawn.x", "-315");
+            config.set("UUID." + id + ".Spawn.y", "67");
+            config.set("UUID." + id + ".Spawn.z", "-444");
+            //   Location spawnpoint = new Location(p.getLocation().getWorld(), -315, 67, -444);
 
          /*   config.set("UUID." + id + ".Lv.WarriorLv", "0");
             config.set("UUID." + id + ".Lv.WarriorExp", "0");

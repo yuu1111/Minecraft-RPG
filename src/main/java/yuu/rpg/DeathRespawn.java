@@ -37,7 +37,14 @@ public class DeathRespawn implements Listener {
     public void onPlayerDeathEvent(PlayerDeathEvent e) {
         Player p = e.getEntity().getPlayer();
         p.spigot().respawn();
-        Location spawnpoint = new Location(p.getLocation().getWorld(), -315, 67, -444);
+        uuid = new CustomConfig(plugin, "UUID.yml");
+        config = uuid.getConfig();
+        UUID id = p.getUniqueId();
+        int X = config.getInt("UUID." + id + ".Spawn.x");
+        int Y = config.getInt("UUID." + id + ".Spawn.y");
+        int Z = config.getInt("UUID." + id + ".Spawn.z");
+
+        Location spawnpoint = new Location(p.getLocation().getWorld(), X, Y, Z);
         p.teleport(spawnpoint);
     }
 

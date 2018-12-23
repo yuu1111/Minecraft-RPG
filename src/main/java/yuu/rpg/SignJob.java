@@ -9,11 +9,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.player.PlayerAnimationEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 
-import java.util.List;
 import java.util.UUID;
 
 
@@ -45,56 +42,24 @@ public class SignJob implements Listener {
             p = e.getPlayer();
             id = p.getUniqueId();
             Job = config.getString("UUID." + id + ".Job");
+
+            JobLvSet();
             JobChange(line1);
         }
     }
 
+    private void JobLvSet(){
+
+        ymlcheck(Job);
+        config.set("UUID." + id + ".Lv." + Job + "Lv", p.getLevel());
+        config.set("UUID." + id + ".Lv."+ Job + "Exp", p.getExp());
+        uuid.saveConfig();
+
+    }
+
     private void JobChange(String str) {
 
-        switch (Job) {
 
-            case "Warrior":
-                ymlcheck(Job);
-                config.set("UUID." + id + ".Lv.WarriorLv", p.getLevel());
-                config.set("UUID." + id + ".Lv.WarriorExp", p.getExp());
-                break;
-
-            case "Mage":
-                ymlcheck(Job);
-                config.set("UUID." + id + ".Lv.MageLv", p.getLevel());
-                config.set("UUID." + id + ".Lv.MageExp", p.getExp());
-                break;
-
-            case "Hunter":
-                ymlcheck(Job);
-                config.set("UUID." + id + ".Lv.HunterLv", p.getLevel());
-                config.set("UUID." + id + ".Lv.HunterExp", p.getExp());
-                break;
-
-            case "Villager":
-                ymlcheck(Job);
-                config.set("UUID." + id + ".Lv.VillagerLv", p.getLevel());
-                config.set("UUID." + id + ".Lv.VillagerExp", p.getExp());
-                break;
-
-            case "Wanderer":
-                ymlcheck(Job);
-                config.set("UUID." + id + ".Lv.WandererLv", p.getLevel());
-                config.set("UUID." + id + ".Lv.WandererExp", p.getExp());
-                break;
-
-            case "Knight":
-                ymlcheck(Job);
-                config.set("UUID." + id + ".Lv.KnightLv", p.getLevel());
-                config.set("UUID." + id + ".Lv.KnightExp", p.getExp());
-                break;
-
-            case "Crafter":
-                ymlcheck(Job);
-                config.set("UUID." + id + ".Lv.CrafterLv", p.getLevel());
-                config.set("UUID." + id + ".Lv.CrafterExp", p.getExp());
-                break;
-        }
 
         switch (str) {
 
