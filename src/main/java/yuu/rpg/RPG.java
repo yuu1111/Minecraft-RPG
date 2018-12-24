@@ -1,10 +1,7 @@
 package yuu.rpg;
 
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.security.PublicKey;
 
 public final class RPG extends JavaPlugin {
 
@@ -13,8 +10,12 @@ public final class RPG extends JavaPlugin {
         saveDefaultConfig();
         new CustomConfig(this, "UUID.yml").saveDefaultConfig();
 
-        getServer().getPluginManager().registerEvents(new Join(this), this);
-        getServer().getPluginManager().registerEvents(new DeathRespawn(), this);
+        new Join(this);
+        new SignJob(this);
+        new DeathRespawn(this);
+        new JobSkill(this);
+        new Skill(this);
+
         getCommand("job").setExecutor(new JobCommand(this));
     }
 
