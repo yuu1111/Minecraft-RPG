@@ -1,5 +1,6 @@
 package yuu.rpg;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -8,6 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.plugin.Plugin;
@@ -58,9 +60,9 @@ public class JobCommand implements CommandExecutor {
                 item.setItemMeta(meta);
                 p.getInventory().addItem(item);
             } else if (args[0].equalsIgnoreCase("spawn")) {
-                World w = p.getLocation().getWorld();
-                Location spawnpoint = new Location(w, -315, 67, -444);
-                p.setBedSpawnLocation(spawnpoint, true);
+                config.set("UUID." + id + ".Spawn.x", -315);
+                config.set("UUID." + id + ".Spawn.y", 67);
+                config.set("UUID." + id + ".Spawn.z", -444);
             } else if (args[0].equalsIgnoreCase("exp")) {
                 float exp = p.getExp();
                 String exp2 = String.valueOf(exp);
@@ -69,6 +71,11 @@ public class JobCommand implements CommandExecutor {
                 p.sendMessage("経験値:" + exp2);
                 p.sendMessage("レベル:" + plv2);
 
+            } else if (args[0].equalsIgnoreCase("gui")) {
+                Inventory inv;
+                inv = Bukkit.createInventory(null, 54, "Item");
+                inv.setItem(0,ItemUtil.ItemCreate("test",Material.STONE,2,"aaa","bbb"));
+                p.openInventory(inv);
             }
         }
         return true;

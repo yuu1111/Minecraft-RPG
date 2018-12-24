@@ -49,11 +49,11 @@ public class SignJob implements Listener {
     }
 
     private void JobLvSet(){
-
         ymlcheck(Job);
         config.set("UUID." + id + ".Lv." + Job + "Lv", p.getLevel());
         config.set("UUID." + id + ".Lv."+ Job + "Exp", p.getExp());
         uuid.saveConfig();
+
 
     }
 

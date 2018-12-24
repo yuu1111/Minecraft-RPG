@@ -3,4 +3,5 @@ yuu\rpg\JobCommand.class
 yuu\rpg\DeathRespawn.class
 yuu\rpg\SignJob.class
 yuu\rpg\CustomConfig.class
+yuu\rpg\ItemUtil.class
 yuu\rpg\RPG.class
