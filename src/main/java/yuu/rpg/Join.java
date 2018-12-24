@@ -5,7 +5,6 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -42,7 +41,7 @@ public class Join implements Listener {
             uuid.saveConfig();
         }
         if (Job == null) {
-            config.set("UUID." + id + ".Job", "Crafter");
+            config.set("UUID." + id + ".Job", "Wanderer");
 
 
             uuid.saveConfig();

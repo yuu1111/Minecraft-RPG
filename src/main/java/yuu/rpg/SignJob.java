@@ -29,7 +29,7 @@ public class SignJob implements Listener {
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void onPlayerInteractEvent(PlayerInteractEvent e) {
+        public void onPlayerInteractEvent(PlayerInteractEvent e) {
 
         if (e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         Block clickedBlock = e.getClickedBlock();
@@ -50,11 +50,9 @@ public class SignJob implements Listener {
 
     private void JobLvSet(){
         ymlcheck(Job);
-        config.set("UUID." + id + ".Lv." + Job + "Lv", p.getLevel());
-        config.set("UUID." + id + ".Lv."+ Job + "Exp", p.getExp());
+        config.set("UUID." + id + ".Lv." + Job + ".Lv", p.getLevel());
+        config.set("UUID." + id + ".Lv."+ Job + ".Exp", p.getExp());
         uuid.saveConfig();
-
-
     }
 
     private void JobChange(String str) {
@@ -65,8 +63,8 @@ public class SignJob implements Listener {
 
             case "戦士":
 
-                p.setExp((float) config.getDouble("UUID." + id + ".Lv.WarriorExp"));
-                p.setLevel(config.getInt("UUID." + id + ".Lv.WarriorLv"));
+                p.setExp((float) config.getDouble("UUID." + id + ".Lv.Warrior.Exp"));
+                p.setLevel(config.getInt("UUID." + id + ".Lv.Warrior.Lv"));
 
                 config.set("UUID." + id + ".Job", "Warrior");
                 p.sendMessage("戦士になりました");
@@ -74,8 +72,8 @@ public class SignJob implements Listener {
 
             case "魔術師":
 
-                p.setExp((float) config.getDouble("UUID." + id + ".Lv.MageExp"));
-                p.setLevel(config.getInt("UUID." + id + ".Lv.MageLv"));
+                p.setExp((float) config.getDouble("UUID." + id + ".Lv.Mage.Exp"));
+                p.setLevel(config.getInt("UUID." + id + ".Lv.Mage.Lv"));
 
                 config.set("UUID." + id + ".Job", "Mage");
                 p.sendMessage("魔術師になりました");
@@ -83,8 +81,8 @@ public class SignJob implements Listener {
 
             case "狩人":
 
-                p.setExp((float) config.getDouble("UUID." + id + ".Lv.HunterExp"));
-                p.setLevel(config.getInt("UUID." + id + ".Lv.HunterLv"));
+                p.setExp((float) config.getDouble("UUID." + id + ".Lv.Hunter.Exp"));
+                p.setLevel(config.getInt("UUID." + id + ".Lv.Hunter.Lv"));
 
                 config.set("UUID." + id + ".Job", "Hunter");
                 p.sendMessage("狩人になりました");
@@ -92,8 +90,8 @@ public class SignJob implements Listener {
 
             case "村人":
 
-                p.setExp((float) config.getDouble("UUID." + id + ".Lv.VillagerExp"));
-                p.setLevel(config.getInt("UUID." + id + ".Lv.VillagerLv"));
+                p.setExp((float) config.getDouble("UUID." + id + ".Lv.Villager.Exp"));
+                p.setLevel(config.getInt("UUID." + id + ".Lv.Villager.Lv"));
 
                 config.set("UUID." + id + ".Job", "Villager");
                 p.sendMessage("村人になりました");
@@ -101,8 +99,8 @@ public class SignJob implements Listener {
 
             case "放浪者":
 
-                p.setExp((float) config.getDouble("UUID." + id + ".Lv.WandererExp"));
-                p.setLevel(config.getInt("UUID." + id + ".Lv.WandererLv"));
+                p.setExp((float) config.getDouble("UUID." + id + ".Lv.Wanderer.Exp"));
+                p.setLevel(config.getInt("UUID." + id + ".Lv.Wanderer.Lv"));
 
                 config.set("UUID." + id + ".Job", "Wanderer");
                 p.sendMessage("放浪者になりました");
@@ -110,8 +108,8 @@ public class SignJob implements Listener {
 
             case "騎士":
 
-                p.setExp((float) config.getDouble("UUID." + id + ".Lv.KnightExp"));
-                p.setLevel(config.getInt("UUID." + id + ".Lv.KnightLv"));
+                p.setExp((float) config.getDouble("UUID." + id + ".Lv.Knight.Exp"));
+                p.setLevel(config.getInt("UUID." + id + ".Lv.Knight.Lv"));
 
                 config.set("UUID." + id + ".Job", "Knight");
                 p.sendMessage("騎士になりました");
@@ -119,8 +117,8 @@ public class SignJob implements Listener {
 
             case "クラフター":
 
-                p.setExp((float) config.getDouble("UUID." + id + ".Lv.CrafterExp"));
-                p.setLevel(config.getInt("UUID." + id + ".Lv.CrafterLv"));
+                p.setExp((float) config.getDouble("UUID." + id + ".Lv.Crafter.Exp"));
+                p.setLevel(config.getInt("UUID." + id + ".Lv.Crafter.Lv"));
 
                 config.set("UUID." + id + ".Job", "Crafter");
                 p.sendMessage("クラフターになりました");
@@ -132,13 +130,13 @@ public class SignJob implements Listener {
 
     private void ymlcheck(String str) {
 
-        String Lv = config.getString("UUID." + id + ".Lv." + str + "Lv");
-        String Exp = config.getString("UUID." + id + ".Lv." + str + "Exp");
+        String Lv = config.getString("UUID." + id + ".Lv." + str + ".Lv");
+        String Exp = config.getString("UUID." + id + ".Lv." + str + ".Exp");
 
         if (Lv == null)
-            config.set("UUID." + id + ".Lv." + str + "Lv", 0);
+            config.set("UUID." + id + ".Lv." + str + ".Lv", 0);
 
         if (Exp == null)
-            config.set("UUID." + id + ".Lv." + str + "Exp", 0);
+            config.set("UUID." + id + ".Lv." + str + ".Exp", 0);
     }
 }
