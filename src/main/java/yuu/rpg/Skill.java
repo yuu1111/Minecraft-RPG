@@ -43,11 +43,11 @@ public class Skill implements Listener {
                     5 // 散開させるZの範囲
             );
 
-            List<Entity> entities = p.getNearbyEntities(5, 1, 5);
-            for (Entity en : entities) {
+            List list = p.getNearbyEntities(5, 1, 5);
+            for (int i = 0; i < list.size(); ++i) {
+                Entity en = (Entity) list.get(i);
                 if (en.getType().isAlive()) {
-                    Damageable d = (Damageable) e;
-                    d.setHealth(d.getHealth() - 5);
+                    ((Damageable) en).damage(10);
                 }
             }
         }
