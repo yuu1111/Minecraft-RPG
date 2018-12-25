@@ -47,7 +47,7 @@ public class Skill implements Listener {
             for (int i = 0; i < list.size(); ++i) {
                 Entity en = (Entity) list.get(i);
                 if (en.getType().isAlive()) {
-                    ((Damageable) en).damage(10);
+                    ((Damageable) en).damage(30,p);
                 }
             }
         }
