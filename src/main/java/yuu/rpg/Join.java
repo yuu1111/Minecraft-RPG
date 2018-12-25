@@ -1,5 +1,7 @@
 package yuu.rpg;
 
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -11,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
+import yuu.rpg.Util.ActionBar;
 
 import java.util.UUID;
 
@@ -33,8 +36,8 @@ public class Join implements Listener {
         UUID id = p.getUniqueId();
         String Job = config.getString("UUID." + id + ".Job");
         String X = config.getString("UUID." + id + ".Spawn.x");
+        ActionBar.sendActionBar(p,"テスト");
         if (X == null){
-
             config.set("UUID." + id + ".Spawn.x", -315);
             config.set("UUID." + id + ".Spawn.y", 67);
             config.set("UUID." + id + ".Spawn.z", -444);
@@ -68,4 +71,5 @@ public class Join implements Listener {
             p.getInventory().addItem(item);
         }
     }
+
 }
