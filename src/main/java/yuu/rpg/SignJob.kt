@@ -56,31 +56,7 @@ class SignJob internal constructor(private val plugin: RPG) : Listener {
 
     private fun jobchange(str: String, p: Player) {
 
-        var job2: String = ""
-        when (str) {
-
-            "戦士" ->
-                job2 = "Warrior"
-
-            "魔術師" ->
-                job2 = "Mage"
-
-            "狩人" ->
-                job2 = "Hunter"
-
-            "村人" ->
-                job2 = "Villager"
-
-            "放浪者" ->
-                job2 = "Wanderer"
-
-            "騎士" ->
-                job2 = "Knight"
-
-            "クラフター" ->
-                job2 = "Crafter"
-        }
-
+        var job2: String = JobUtil.jobjptoen(str)
         if (!job2.isEmpty()) {
             p.exp = config!!.getDouble("UUID.$id.Lv.$job2.Exp").toFloat()
             p.level = config!!.getInt("UUID.$id.Lv.$job2.Lv")

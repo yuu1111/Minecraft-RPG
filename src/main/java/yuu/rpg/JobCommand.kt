@@ -61,7 +61,7 @@ class JobCommand internal constructor(private val plugin: RPG) : CommandExecutor
                 args[0].equals("gui", ignoreCase = true) -> {
                     val inv: Inventory
                     inv = Bukkit.createInventory(null, 54, "Item")
-                    inv.setItem(0, ItemUtil.ItemCreate("test", Material.STONE, 2, "aaa", "bbb"))
+                    inv.setItem(0, ItemUtili.ItemCreate("test", Material.STONE, 2, "aaa", "bbb"))
                     p.openInventory(inv)
                 }
             }

@@ -5,10 +5,11 @@ import org.bukkit.Material
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta
+import org.bukkit.plugin.java.JavaPlugin
 
 import java.util.ArrayList
 
-object ItemUtil {
+object ItemUtili {
 
 
     fun ItemCreate(name: String, type: Material, loreline: Int, lore1: String, lore2: String): ItemStack {
@@ -39,4 +40,3 @@ object ItemUtil {
         return item
     }
 }
-
