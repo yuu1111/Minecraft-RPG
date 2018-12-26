@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin
 class RPG : JavaPlugin() {
 
     override fun onEnable() {
+
         saveDefaultConfig()
         CustomConfig(this, "UUID.yml").saveDefaultConfig()
 

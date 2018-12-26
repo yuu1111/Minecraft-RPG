@@ -52,16 +52,8 @@ class Join internal constructor(private val plugin: RPG) : Listener {
             meta.author = "yuu_111"
             meta.displayName = "チュートリアル"
             meta.addPage(*arrayOf(
-                    // 1ページ目
-                    "チュートリアル\n" +
-                            "まず最初に奥の方の看板で職業を選びましょう\n" +
-                            "各職業についての説明は次のページ以降にあります",
-                    // 2ページ目
-                    "戦士\n" +
-                            "\n" +
-                            "aaa\n" +
-                            "bbb\n" +
-                            "ccc"))
+                    "チュートリアル\nまず最初に奥の方の看板で職業を選びましょう\n各職業についての説明は次のページ以降にあります",
+                    "戦士\n\n基本的な剣などの武器を扱える職業です\n高い筋力を生かして弓を高い威力で使えます\nccc"))
             item.itemMeta = meta
             p.inventory.addItem(item)
         }

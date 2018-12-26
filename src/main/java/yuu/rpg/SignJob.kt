@@ -42,87 +42,53 @@ class SignJob internal constructor(private val plugin: RPG) : Listener {
             id = p.uniqueId
             job = config!!.getString("UUID.$id.Job")
 
-            JobLvSet(p)
-            JobChange(line1, p)
+            joblvset(p)
+            jobchange(line1, p)
         }
     }
 
-    private fun JobLvSet(p: Player) {
+    private fun joblvset(p: Player) {
         ymlcheck(job)
         config!!.set("UUID.$id.Lv.$job.Lv", p.level)
         config!!.set("UUID.$id.Lv.$job.Exp", p.exp)
         uuid.saveConfig()
     }
 
-    private fun JobChange(str: String, p: Player) {
+    private fun jobchange(str: String, p: Player) {
 
-
+        var job2: String = ""
         when (str) {
 
-            "戦士" -> {
+            "戦士" ->
+                job2 = "Warrior"
 
-                p.exp = config!!.getDouble("UUID.$id.Lv.Warrior.Exp").toFloat()
-                p.level = config!!.getInt("UUID.$id.Lv.Warrior.Lv")
+            "魔術師" ->
+                job2 = "Mage"
 
-                config!!.set("UUID.$id.Job", "Warrior")
-                p.sendMessage("戦士になりました")
-            }
+            "狩人" ->
+                job2 = "Hunter"
 
-            "魔術師" -> {
+            "村人" ->
+                job2 = "Villager"
 
-                p.exp = config!!.getDouble("UUID.$id.Lv.Mage.Exp").toFloat()
-                p.level = config!!.getInt("UUID.$id.Lv.Mage.Lv")
+            "放浪者" ->
+                job2 = "Wanderer"
 
-                config!!.set("UUID.$id.Job", "Mage")
-                p.sendMessage("魔術師になりました")
-            }
+            "騎士" ->
+                job2 = "Knight"
 
-            "狩人" -> {
-
-                p.exp = config!!.getDouble("UUID.$id.Lv.Hunter.Exp").toFloat()
-                p.level = config!!.getInt("UUID.$id.Lv.Hunter.Lv")
-
-                config!!.set("UUID.$id.Job", "Hunter")
-                p.sendMessage("狩人になりました")
-            }
-
-            "村人" -> {
-
-                p.exp = config!!.getDouble("UUID.$id.Lv.Villager.Exp").toFloat()
-                p.level = config!!.getInt("UUID.$id.Lv.Villager.Lv")
-
-                config!!.set("UUID.$id.Job", "Villager")
-                p.sendMessage("村人になりました")
-            }
-
-            "放浪者" -> {
-
-                p.exp = config!!.getDouble("UUID.$id.Lv.Wanderer.Exp").toFloat()
-                p.level = config!!.getInt("UUID.$id.Lv.Wanderer.Lv")
-
-                config!!.set("UUID.$id.Job", "Wanderer")
-                p.sendMessage("放浪者になりました")
-            }
-
-            "騎士" -> {
-
-                p.exp = config!!.getDouble("UUID.$id.Lv.Knight.Exp").toFloat()
-                p.level = config!!.getInt("UUID.$id.Lv.Knight.Lv")
-
-                config!!.set("UUID.$id.Job", "Knight")
-                p.sendMessage("騎士になりました")
-            }
-
-            "クラフター" -> {
-
-                p.exp = config!!.getDouble("UUID.$id.Lv.Crafter.Exp").toFloat()
-                p.level = config!!.getInt("UUID.$id.Lv.Crafter.Lv")
-
-                config!!.set("UUID.$id.Job", "Crafter")
-                p.sendMessage("クラフターになりました")
-            }
+            "クラフター" ->
+                job2 = "Crafter"
         }
-        uuid.saveConfig()
+
+        if (!job2.isEmpty()) {
+            p.exp = config!!.getDouble("UUID.$id.Lv.$job2.Exp").toFloat()
+            p.level = config!!.getInt("UUID.$id.Lv.$job2.Lv")
+
+            config!!.set("UUID.$id.Job", job2)
+            uuid.saveConfig()
+            p.sendMessage(str+"になりました")
+        }
     }
 
     private fun ymlcheck(str: String?) {
