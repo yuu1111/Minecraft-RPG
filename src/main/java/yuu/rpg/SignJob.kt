@@ -58,8 +58,8 @@ class SignJob internal constructor(private val plugin: RPG) : Listener {
 
         var job2: String = JobUtil.jobjptoen(str)
         if (!job2.isEmpty()) {
-            p.exp = config!!.getDouble("UUID.$id.Lv.$job2.Exp").toFloat()
             p.level = config!!.getInt("UUID.$id.Lv.$job2.Lv")
+            p.exp = config!!.getDouble("UUID.$id.Lv.$job2.Exp").toFloat()
 
             config!!.set("UUID.$id.Job", job2)
             uuid.saveConfig()

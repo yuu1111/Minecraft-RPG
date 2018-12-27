@@ -28,12 +28,7 @@ class DeathRespawn internal constructor(private val plugin: RPG) : Listener {
         uuid = CustomConfig(plugin, "UUID.yml")
         config = uuid.getConfig()
         val id = p.uniqueId
-        val X = config!!.getInt("UUID.$id.Spawn.x")
-        val Y = config!!.getInt("UUID.$id.Spawn.y")
-        val Z = config!!.getInt("UUID.$id.Spawn.z")
-
-        val spawnpoint = Location(p.location.world, X.toDouble(), Y.toDouble(), Z.toDouble())
-        p.teleport(spawnpoint)
+        p.teleport(Location(p.location.world, config!!.getInt("UUID.$id.Spawn.x").toDouble(), config!!.getInt("UUID.$id.Spawn.y").toDouble(), config!!.getInt("UUID.$id.Spawn.z").toDouble()))
     }
 
     @EventHandler

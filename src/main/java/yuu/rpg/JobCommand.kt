@@ -25,12 +25,14 @@ class JobCommand internal constructor(private val plugin: RPG) : CommandExecutor
 
         uuid = CustomConfig(plugin, "UUID.yml")
         config = uuid.getConfig()
-        var p = sender as Player
+        val p = sender as Player
         id = p.uniqueId
 
         if (args.isNotEmpty()) {
             when {
                 args[0].equals("check", ignoreCase = true) -> {
+                    p.sendMessage("経験値:" + p.exp.toString())
+                    p.sendMessage("レベル:" +  p.level.toString())
                     p.sendMessage(config!!.getString("UUID.$id.Job"))
                 }
                 args[0].equals("book", ignoreCase = true) -> {
@@ -46,20 +48,8 @@ class JobCommand internal constructor(private val plugin: RPG) : CommandExecutor
                     p.inventory.addItem(item)
                 }
                 args[0].equals("spawn", ignoreCase = true) -> {
-                    val X = config!!.getInt("UUID.$id.Spawn.x")
-                    val Y = config!!.getInt("UUID.$id.Spawn.y")
-                    val Z = config!!.getInt("UUID.$id.Spawn.z")
-
-                    val spawnpoint = Location(p.location.world, X.toDouble(), Y.toDouble(), Z.toDouble())
-                    p.teleport(spawnpoint)
+                    p.teleport(Location(p.location.world, config!!.getInt("UUID.$id.Spawn.x").toDouble(), config!!.getInt("UUID.$id.Spawn.y").toDouble(), config!!.getInt("UUID.$id.Spawn.z").toDouble()))
                     p.sendMessage("スポーンしました")
-                }
-                args[0].equals("exp", ignoreCase = true) -> {
-                    val exp = p.exp.toString()
-                    val plv = p.level.toString()
-                    p.sendMessage("経験値:$exp")
-                    p.sendMessage("レベル:$plv")
-
                 }
                 args[0].equals("gui", ignoreCase = true) -> {
                     val inv: Inventory
