@@ -57,5 +57,11 @@ class Join internal constructor(private val plugin: RPG) : Listener {
             item.itemMeta = meta
             p.inventory.addItem(item)
         }
+        var HP = config.getString("UUID.$id.Lv.$Job.HP")
+        if (HP == null) {
+            config!!.set("UUID.$id.Lv.$Job.HP", 20)
+            config!!.set("UUID.$id.Lv.$Job.MP", 20)
+
+        }
     }
 }
