@@ -16,17 +16,14 @@ import java.util.UUID
 
 class SignJob internal constructor(private val plugin: RPG) : Listener {
 
-
-
-
     init {
         plugin.server.pluginManager.registerEvents(this, plugin)
     }
 
     private var id: UUID? = null
-    private var config: FileConfiguration? = null
     private var job: String? = null
-    var uuid: CustomConfig = CustomConfig(plugin, "UUID.yml")
+    private val uuid: CustomConfig = CustomConfig(plugin, "UUID.yml")
+    private val config: FileConfiguration? = uuid.getConfig()
 
     @EventHandler(priority = EventPriority.HIGHEST)
     fun onPlayerInteractEvent(e: PlayerInteractEvent) {
@@ -37,45 +34,37 @@ class SignJob internal constructor(private val plugin: RPG) : Listener {
         if (material == Material.SIGN || material == Material.WALL_SIGN) {
             val sign = clickedBlock.state as Sign
             val line1 = sign.getLine(0)
-            var p: Player = e.player
-            config = uuid.getConfig()
+            val p: Player = e.player
             id = p.uniqueId
             job = config!!.getString("UUID.$id.Job")
 
-            joblvset(p)
             jobchange(line1, p)
         }
     }
 
-    private fun joblvset(p: Player) {
-        ymlcheck(job)
-        config!!.set("UUID.$id.Lv.$job.Lv", p.level)
-        config!!.set("UUID.$id.Lv.$job.Exp", p.exp)
-        uuid.saveConfig()
-    }
-
     private fun jobchange(str: String, p: Player) {
 
-        var job2: String = JobUtil.jobjptoen(str)
-        if (!job2.isEmpty()) {
-            p.level = config!!.getInt("UUID.$id.Lv.$job2.Lv")
-            p.exp = config!!.getDouble("UUID.$id.Lv.$job2.Exp").toFloat()
+        ymlcheck(job)
+        config!!.set("UUID.$id.Lv.$job.Lv", p.level)
+        config.set("UUID.$id.Lv.$job.Exp", p.exp)
 
-            config!!.set("UUID.$id.Job", job2)
-            uuid.saveConfig()
-            p.sendMessage(str+"になりました")
+        val job2: String = JobUtil.jobjptoen(str)
+        if (!job2.isEmpty()) {
+            p.level = config.getInt("UUID.$id.Lv.$job2.Lv")
+            p.exp = config.getDouble("UUID.$id.Lv.$job2.Exp").toFloat()
+
+            config.set("UUID.$id.Job", job2)
+            p.sendMessage(str + "になりました")
         }
+        uuid.saveConfig()
     }
 
     private fun ymlcheck(str: String?) {
 
-        val lv = config!!.getString("UUID.$id.Lv.$str.Lv")
-        val exp = config!!.getString("UUID.$id.Lv.$str.Exp")
+        if (config!!.getString("UUID.$id.Lv.$str.Lv") == null)
+            config.set("UUID.$id.Lv.$str.Lv", 0)
 
-        if (lv == null)
-            config!!.set("UUID.$id.Lv.$str.Lv", 0)
-
-        if (exp == null)
-            config!!.set("UUID.$id.Lv.$str.Exp", 0)
+        if (config.getString("UUID.$id.Lv.$str.Exp") == null)
+            config.set("UUID.$id.Lv.$str.Exp", 0)
     }
 }
