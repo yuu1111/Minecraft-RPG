@@ -9,7 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin
 
 import java.util.ArrayList
 
-object ItemUtili {
+object ItemUtil {
 
 
     fun ItemCreate(name: String, type: Material, loreline: Int, lore1: String, lore2: String): ItemStack {

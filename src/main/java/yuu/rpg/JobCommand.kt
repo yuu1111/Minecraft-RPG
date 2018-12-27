@@ -1,6 +1,7 @@
 package yuu.rpg
 
 import org.bukkit.Bukkit
+import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
@@ -45,23 +46,25 @@ class JobCommand internal constructor(private val plugin: RPG) : CommandExecutor
                     p.inventory.addItem(item)
                 }
                 args[0].equals("spawn", ignoreCase = true) -> {
-                    config!!.set("UUID.$id.Spawn.x", -315)
-                    config!!.set("UUID.$id.Spawn.y", 67)
-                    config!!.set("UUID.$id.Spawn.z", -444)
+                    val X = config!!.getInt("UUID.$id.Spawn.x")
+                    val Y = config!!.getInt("UUID.$id.Spawn.y")
+                    val Z = config!!.getInt("UUID.$id.Spawn.z")
+
+                    val spawnpoint = Location(p.location.world, X.toDouble(), Y.toDouble(), Z.toDouble())
+                    p.teleport(spawnpoint)
+                    p.sendMessage("スポーンしました")
                 }
                 args[0].equals("exp", ignoreCase = true) -> {
-                    val exp = p.exp
-                    val exp2 = exp.toString()
-                    val plv = p.level
-                    val plv2 = plv.toString()
-                    p.sendMessage("経験値:$exp2")
-                    p.sendMessage("レベル:$plv2")
+                    val exp = p.exp.toString()
+                    val plv = p.level.toString()
+                    p.sendMessage("経験値:$exp")
+                    p.sendMessage("レベル:$plv")
 
                 }
                 args[0].equals("gui", ignoreCase = true) -> {
                     val inv: Inventory
                     inv = Bukkit.createInventory(null, 54, "Item")
-                    inv.setItem(0, ItemUtili.ItemCreate("test", Material.STONE, 2, "aaa", "bbb"))
+                    inv.setItem(0, ItemUtil.ItemCreate("test", Material.STONE, 2, "aaa", "bbb"))
                     p.openInventory(inv)
                 }
             }
