@@ -4,3 +4,9 @@ main: yuu.rpg.RPG
 commands:
   job:
     default: true
+    permission: rpg.job
+  spawn:
+    default: true
+  oputil:
+    default: op
+    permission: rpg.oputil
