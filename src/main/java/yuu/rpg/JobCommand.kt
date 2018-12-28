@@ -15,24 +15,21 @@ import org.bukkit.inventory.meta.BookMeta
 import java.util.UUID
 
 class JobCommand internal constructor(private val plugin: RPG) : CommandExecutor {
+    private val uuid: CustomConfig = CustomConfig(plugin, "UUID.yml")
+    private val config: FileConfiguration? = uuid.getConfig()
     private var id: UUID? = null
-    private var config: FileConfiguration? = null
     private var job: String? = null
-    var uuid: CustomConfig = CustomConfig(plugin, "UUID.yml")
 
     override fun onCommand(sender: CommandSender, command: Command, label: String, args: Array<String>): Boolean {
 
-
-        uuid = CustomConfig(plugin, "UUID.yml")
-        config = uuid.getConfig()
         val p = sender as Player
         id = p.uniqueId
-
+        val inv: Inventory
         if (args.isNotEmpty()) {
             when {
                 args[0].equals("check", ignoreCase = true) -> {
                     p.sendMessage("経験値:" + p.exp.toString())
-                    p.sendMessage("レベル:" +  p.level.toString())
+                    p.sendMessage("レベル:" + p.level.toString())
                     p.sendMessage(config!!.getString("UUID.$id.Job"))
                 }
                 args[0].equals("book", ignoreCase = true) -> {
@@ -47,12 +44,7 @@ class JobCommand internal constructor(private val plugin: RPG) : CommandExecutor
                     item.itemMeta = meta
                     p.inventory.addItem(item)
                 }
-                args[0].equals("spawn", ignoreCase = true) -> {
-                    p.teleport(Location(p.location.world, config!!.getInt("UUID.$id.Spawn.x").toDouble(), config!!.getInt("UUID.$id.Spawn.y").toDouble(), config!!.getInt("UUID.$id.Spawn.z").toDouble()))
-                    p.sendMessage("スポーンしました")
-                }
                 args[0].equals("gui", ignoreCase = true) -> {
-                    val inv: Inventory
                     inv = Bukkit.createInventory(null, 54, "Item")
                     inv.setItem(0, ItemUtil.ItemCreate("test", Material.STONE, 2, "aaa", "bbb"))
                     p.openInventory(inv)

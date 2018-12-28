@@ -18,17 +18,20 @@ class DeathRespawn internal constructor(private val plugin: RPG) : Listener {
     init {
         plugin.server.pluginManager.registerEvents(this, plugin)
     }
-    var uuid: CustomConfig = CustomConfig(plugin, "UUID.yml")
-    internal var config: FileConfiguration? = null
+  private val uuid: CustomConfig = CustomConfig(plugin, "UUID.yml")
+    private val config: FileConfiguration? =  uuid.getConfig()
 
     @EventHandler
     fun onPlayerDeathEvent(e: PlayerDeathEvent) {
         val p = e.entity.player
         p.spigot().respawn()
-        uuid = CustomConfig(plugin, "UUID.yml")
-        config = uuid.getConfig()
+
         val id = p.uniqueId
-        p.teleport(Location(p.location.world, config!!.getInt("UUID.$id.Spawn.x").toDouble(), config!!.getInt("UUID.$id.Spawn.y").toDouble(), config!!.getInt("UUID.$id.Spawn.z").toDouble()))
+        val x = config!!.getInt("UUID.$id.Spawn.x").toDouble()
+        val y = config.getInt("UUID.$id.Spawn.y").toDouble()
+        val z = config.getInt("UUID.$id.Spawn.z").toDouble()
+
+        p.teleport(Location(p.location.world, x, y, z))
     }
 
     @EventHandler
@@ -37,14 +40,12 @@ class DeathRespawn internal constructor(private val plugin: RPG) : Listener {
         val clickedBlock = e.clickedBlock
         val material = clickedBlock.type
         if (material == Material.STAINED_GLASS) {
-            uuid = CustomConfig(plugin, "UUID.yml")
             val p = e.player
-            config = uuid.getConfig()
             val id = p.uniqueId
 
             config!!.set("UUID.$id.Spawn.x", e.clickedBlock.x)
-            config!!.set("UUID.$id.Spawn.y", e.clickedBlock.y)
-            config!!.set("UUID.$id.Spawn.z", e.clickedBlock.z)
+            config.set("UUID.$id.Spawn.y", e.clickedBlock.y)
+            config.set("UUID.$id.Spawn.z", e.clickedBlock.z)
             uuid.saveConfig()
             p.sendMessage("スポーン地点を設定しました")
         }
