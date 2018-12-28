@@ -106,6 +106,10 @@
             <id>vault-repo</id>
             <url>http://nexus.hc.to/content/repositories/pub_releases</url>
         </repository>
+            <repository>
+                <id>my-local-repo</id>
+                <url>C:\Minecraft\lib\akarin-1.12.2.jar</url>
+            </repository>
     </repositories>
 
     <dependencies>
@@ -142,5 +146,12 @@
             <artifactId>rxjava</artifactId>
             <version>2.2.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>craftbukkit</artifactId>
+            <version>1.12.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 </project>

@@ -1,12 +1,14 @@
 package yuu.rpg
 
 import org.bukkit.plugin.java.JavaPlugin
+import yuu.rpg.Entity.CustomEntities
 
 
 class RPG : JavaPlugin() {
 
     override fun onEnable() {
 
+        CustomEntities.registerEntities()
         saveDefaultConfig()
         CustomConfig(this, "UUID.yml").saveDefaultConfig()
 
@@ -18,9 +20,10 @@ class RPG : JavaPlugin() {
 
         getCommand("job").executor = JobCommand(this)
         getCommand("spawn").executor = Spawn(this)
+        getCommand("oputil").executor = OpUtil(this)
     }
 
     override fun onDisable() {
-        // Plugin shutdown logic
+        CustomEntities.unregisterEntities()
     }
 }
