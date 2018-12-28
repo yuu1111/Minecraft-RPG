@@ -3,4 +3,7 @@ version: ${project.version}
 main: yuu.rpg.RPG
 commands:
   job:
+    default: op
+    permission: rpg.job
+  spawn:
     default: true

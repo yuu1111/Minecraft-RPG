@@ -36,8 +36,9 @@ class Skill internal constructor(private val plugin: RPG) : Listener {
                     500,
                     5.0, // 散開させるXの範囲
                     1.0, // 散開させるYの範囲
-                    5.0 // 散開させるZの範囲
-            )
+                    5.0, // 散開させるZの範囲
+                    5.0 // 速度?
+            );
 
             val list = p.getNearbyEntities(5.0, 1.0, 5.0)
             for (i in list.indices) {

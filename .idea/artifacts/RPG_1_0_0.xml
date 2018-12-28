@@ -3,11 +3,6 @@
     <output-path>$PROJECT_DIR$/../RPG-Server/plugins/</output-path>
     <root id="archive" name="RPG-1.0.0.jar">
       <element id="module-output" name="RPG" />
-      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.71" />
-      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:1.2.71" />
-      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-common:1.2.71" />
-      <element id="library" level="project" name="Maven: org.jetbrains:annotations:13.0" />
-      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.71" />
     </root>
   </artifact>
 </component>

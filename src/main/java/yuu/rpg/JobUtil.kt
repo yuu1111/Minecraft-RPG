@@ -2,61 +2,61 @@ package yuu.rpg
 
 object JobUtil {
 
-    fun jobjptoen(job :String):String {
+    fun jobjptoen(str :String):String {
 
-        var job2: String = ""
-        when (job) {
+        var job = ""
+        when (str) {
 
             "戦士" ->
-                job2 = "Warrior"
+                job = "Warrior"
 
             "魔術師" ->
-                job2 = "Mage"
+                job = "Mage"
 
             "狩人" ->
-                job2 = "Hunter"
+                job = "Hunter"
 
             "村人" ->
-                job2 = "Villager"
+                job = "Villager"
 
             "放浪者" ->
-                job2 = "Wanderer"
+                job = "Wanderer"
 
             "騎士" ->
-                job2 = "Knight"
+                job = "Knight"
 
             "クラフター" ->
-                job2 = "Crafter"
+                job = "Crafter"
         }
-        return job2;
+        return job;
     }
 
-    fun jobentojp(job :String):String {
+    fun jobentojp(str :String):String {
 
-        var job2: String = ""
-        when (job) {
+        var job = ""
+        when (str) {
 
             "Warrior" ->
-                job2 = "戦士"
+                job = "戦士"
 
             "Mage" ->
-                job2 = "魔術師"
+                job = "魔術師"
 
             "Hunter" ->
-                job2 = "狩人"
+                job = "狩人"
 
             "Villager" ->
-                job2 = "村人"
+                job = "村人"
 
             "Wanderer" ->
-                job2 = "放浪者"
+                job = "放浪者"
 
             "Knight" ->
-                job2 = "騎士"
+                job = "騎士"
 
             "Crafter" ->
-                job2 = "クラフター"
+                job = "クラフター"
         }
-        return job2;
+        return job;
     }
 }

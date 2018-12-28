@@ -17,6 +17,7 @@ class RPG : JavaPlugin() {
         Skill(this)
 
         getCommand("job").executor = JobCommand(this)
+        getCommand("spawn").executor = Spawn(this)
     }
 
     override fun onDisable() {
