@@ -30,7 +30,6 @@ class Join internal constructor(private val plugin: RPG) : Listener {
         val id = p.uniqueId
         val job = config!!.getString("UUID.$id.Job")
         val x = config.getString("UUID.$id.Spawn.x")
-        p.sendMessage(x)
         if (x == null) {
             config.set("UUID.$id.Spawn.x", -315)
             config.set("UUID.$id.Spawn.y", 67)

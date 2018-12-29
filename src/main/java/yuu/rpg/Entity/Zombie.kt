@@ -14,7 +14,4 @@ public open class Zombie : EntityZombie {
 
         setPosition(loc.getX(), loc.getY(), loc.getZ());
     }
-  /* constructor(world: World) : super(world) {
-
-   }*/
 }
