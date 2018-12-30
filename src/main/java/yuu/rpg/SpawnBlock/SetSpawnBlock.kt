@@ -41,30 +41,7 @@ class SetSpawnBlock internal constructor(private val plugin: RPG) : Listener {
 
                 val loc = clickedBlock.location
                 val blockPos = BlockPosition(loc.blockX, loc.blockY, loc.blockZ)
-
-                val spawner = (p.world as CraftWorld).handle.getTileEntity(blockPos) as TileEntityMobSpawner?
-                val spawnerTag = spawner!!.d()
-
-                spawnerTag.setShort("SpawnRange", 5.toShort())
-                spawnerTag.setShort("MaxNearbyEntities", 10.toShort())
-
-                val handList = NBTTagList()
-
-                val offHand = NBTTagCompound()
-                val mainHand = ItemStack(Items.SADDLE).save(NBTTagCompound())
-
-                handList.add(mainHand);
-                handList.add(offHand)
-
-
-                val spawnData = NBTTagCompound()
-                spawnData.setString("id", "zombie");
-                spawnData.set("HandItems", handList);
-
-                spawnerTag.set("SpawnData", spawnData)
-                spawner.load(spawnerTag);
-
-
+                SpawnBlock.NMSSpawnBlock(p,blockPos,"zombie",5,10)
 
             }
         }
