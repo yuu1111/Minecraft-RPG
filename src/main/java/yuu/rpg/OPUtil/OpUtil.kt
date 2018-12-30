@@ -1,4 +1,4 @@
-package yuu.rpg
+package yuu.rpg.OPUtil
 
 import org.bukkit.Bukkit
 import org.bukkit.Location
@@ -12,7 +12,9 @@ import org.bukkit.inventory.Inventory
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld
 import org.bukkit.event.entity.CreatureSpawnEvent
 import org.bukkit.inventory.ItemStack
+import yuu.rpg.Config.CustomConfig
 import yuu.rpg.Item.ItemUtil
+import yuu.rpg.RPG
 
 
 class OpUtil internal constructor(private val plugin: RPG) : CommandExecutor {
@@ -36,7 +38,8 @@ class OpUtil internal constructor(private val plugin: RPG) : CommandExecutor {
                 }
 
                 args[0].equals("spawnblock", ignoreCase = true) -> {
-                    val keyitem: ItemStack = ItemUtil.itemcreate("スポーンブロック設置", Material.STICK, "")
+
+                    val keyitem: ItemStack = ItemUtil.itemcreate("スポーンブロック設置", Material.STICK, args[1])
                     p.inventory.addItem(keyitem)
                 }
                 args[0].equals("test", ignoreCase = true) -> {
@@ -47,6 +50,13 @@ class OpUtil internal constructor(private val plugin: RPG) : CommandExecutor {
                     val loc = Location(p.location.world, x, y, z)
                     val zombie2 = yuu.rpg.Entity.Zombie(loc)
                     (loc.world as CraftWorld).handle.addEntity(zombie2, CreatureSpawnEvent.SpawnReason.CUSTOM)
+
+                }
+                args[0].equals("blockgui", ignoreCase = true) -> {
+
+                    inv = Bukkit.createInventory(null, 54, "OPGUISpawnBlock1")
+                    inv.setItem(0, ItemUtil.itemcreate("test", Material.STONE))
+                    p.openInventory(inv)
 
                 }
             }

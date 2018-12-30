@@ -9,10 +9,10 @@ import org.bukkit.event.block.Action
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.inventory.ItemStack
 import yuu.rpg.Item.ItemUtil
-import org.bukkit.craftbukkit.v1_12_R1.CraftWorld
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.event.Listener
-import yuu.rpg.CustomConfig
+import yuu.rpg.Config.CustomConfig
+import yuu.rpg.Item.NMSItem
 import yuu.rpg.RPG
 
 
@@ -33,7 +33,8 @@ class SetSpawnBlock internal constructor(private val plugin: RPG) : Listener {
 
         val p: Player = e.player
         val handitem: ItemStack = p.inventory.itemInMainHand
-        val keyitem: ItemStack = ItemUtil.itemcreate("スポーンブロック設置", Material.STICK, "")
+        val keyitem: ItemStack = ItemUtil.itemcreate("スポーンブロック設置", Material.STICK)
+
         if (handitem == keyitem) {
             val clickedBlock = e.clickedBlock
             val material = clickedBlock.type
@@ -41,8 +42,12 @@ class SetSpawnBlock internal constructor(private val plugin: RPG) : Listener {
 
                 val loc = clickedBlock.location
                 val blockPos = BlockPosition(loc.blockX, loc.blockY, loc.blockZ)
-                SpawnBlock.NMSSpawnBlock(p,blockPos,"zombie",5,10)
+                if(keyitem.lore.toString() == "ゾンビ") {
+                    val mainHand = NMSItem.NMSItemChange(ItemUtil.itemcreate("テスト", Material.COAL)).save(NBTTagCompound())
+                    val offHand = NBTTagCompound()
 
+                    SpawnBlock.NMSSpawnBlock(p, blockPos, "zombie", 5, 10, mainHand, offHand)
+                }
             }
         }
     }

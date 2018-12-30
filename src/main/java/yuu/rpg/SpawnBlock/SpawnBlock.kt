@@ -6,7 +6,7 @@ import org.bukkit.entity.Player
 
 object SpawnBlock {
 
-    public fun NMSSpawnBlock(p: Player, blockPos: BlockPosition,mobid:String,range:Int,max:Int) {
+    public fun NMSSpawnBlock(p: Player, blockPos: BlockPosition,mobid:String,range:Int,max:Int,mainhanditem: NBTTagCompound, offhanditem: NBTTagCompound) {
 
 
         val spawner = (p.world as CraftWorld).handle.getTileEntity(blockPos) as TileEntityMobSpawner?
@@ -18,7 +18,7 @@ object SpawnBlock {
         val spawnData = NBTTagCompound()
 
         spawnData.setString("id", mobid);
-        handitem(spawnData,ItemStack(Items.SADDLE).save(NBTTagCompound()),NBTTagCompound())
+        handitem(spawnData,mainhanditem,offhanditem)
 
         spawnerTag.set("SpawnData", spawnData)
         spawner.load(spawnerTag);

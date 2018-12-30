@@ -1,4 +1,4 @@
-package yuu.rpg
+package yuu.rpg.Job
 
 object JobUtil {
 

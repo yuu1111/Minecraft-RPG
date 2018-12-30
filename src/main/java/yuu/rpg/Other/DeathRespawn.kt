@@ -1,25 +1,24 @@
-package yuu.rpg
+package yuu.rpg.Other
 
 import org.bukkit.Location
 import org.bukkit.Material
-import org.bukkit.block.Block
 import org.bukkit.configuration.file.FileConfiguration
-import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.block.Action
 import org.bukkit.event.entity.PlayerDeathEvent
 import org.bukkit.event.player.PlayerInteractEvent
-
-import java.util.UUID
+import yuu.rpg.Config.CustomConfig
+import yuu.rpg.RPG
 
 class DeathRespawn internal constructor(private val plugin: RPG) : Listener {
 
     init {
         plugin.server.pluginManager.registerEvents(this, plugin)
     }
-  private val uuid: CustomConfig = CustomConfig(plugin, "UUID.yml")
-    private val config: FileConfiguration? =  uuid.getConfig()
+
+    private val uuid: CustomConfig = CustomConfig(plugin, "UUID.yml")
+    private val config: FileConfiguration? = uuid.getConfig()
 
     @EventHandler
     fun onPlayerDeathEvent(e: PlayerDeathEvent) {

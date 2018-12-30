@@ -1,19 +1,15 @@
-package yuu.rpg
+package yuu.rpg.Skill
 
-import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.Particle
-import org.bukkit.Sound
 import org.bukkit.entity.Damageable
 import org.bukkit.entity.Entity
-import org.bukkit.entity.Item
-import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.block.Action
 import org.bukkit.event.player.PlayerInteractEvent
-import org.bukkit.inventory.ItemStack
+import yuu.rpg.RPG
 
 class Skill internal constructor(private val plugin: RPG) : Listener {
 

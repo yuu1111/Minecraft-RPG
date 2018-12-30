@@ -1,18 +1,15 @@
-package yuu.rpg
+package yuu.rpg.Other
 
 import org.bukkit.Location
 import org.bukkit.Material
-import org.bukkit.World
-import org.bukkit.configuration.file.FileConfiguration
-import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.BookMeta
-
-import java.util.UUID
+import yuu.rpg.Config.CustomConfig
+import yuu.rpg.RPG
 
 class Join internal constructor(private val plugin: RPG) : Listener {
 

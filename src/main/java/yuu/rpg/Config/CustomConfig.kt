@@ -1,4 +1,4 @@
-package yuu.rpg
+package yuu.rpg.Config
 
 import java.io.File
 import java.io.IOException
