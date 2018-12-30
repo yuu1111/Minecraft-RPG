@@ -11,17 +11,17 @@ import java.util.ArrayList
 
 object ItemUtil {
 
-    fun itemcreate(name: String, type: Material, loreline: Int, lore1: String, lore2: String): ItemStack {
+    fun itemcreate(name: String, type: Material,vararg lore: String): ItemStack {
 
         val lores = ArrayList<String>()
 
-        if (loreline == 1) {
-            lores.add(lore1)
+        if(!lore[0].isEmpty())
+            lores.add(lore[0])
 
-        } else if (loreline == 2) {
-            lores.add(lore1)
-            lores.add(lore2)
-        }
+        if(!lore[1].isEmpty())
+            lores.add(lore[1])
+
+
 
         val item = ItemStack(type)
         val im = item.itemMeta

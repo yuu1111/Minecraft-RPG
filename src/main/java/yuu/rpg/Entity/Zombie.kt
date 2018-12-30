@@ -14,6 +14,6 @@ public open class Zombie : EntityZombie {
 
     constructor(loc: Location) : super((loc.getWorld() as CraftWorld).handle) {
 
-        setPosition(loc.getX(), loc.getY(), loc.getZ());
+        setPosition(loc.x, loc.y, loc.z);
     }
 }

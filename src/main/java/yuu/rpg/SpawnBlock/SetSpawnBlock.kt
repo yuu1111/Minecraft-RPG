@@ -33,7 +33,7 @@ class SetSpawnBlock internal constructor(private val plugin: RPG) : Listener {
 
         val p: Player = e.player
         val handitem: ItemStack = p.inventory.itemInMainHand
-        val keyitem: ItemStack = ItemUtil.itemcreate("スポーンブロック設置", Material.STICK, 0, "", "")
+        val keyitem: ItemStack = ItemUtil.itemcreate("スポーンブロック設置", Material.STICK, "")
         if (handitem == keyitem) {
             val clickedBlock = e.clickedBlock
             val material = clickedBlock.type

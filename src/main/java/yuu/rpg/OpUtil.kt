@@ -31,12 +31,12 @@ class OpUtil internal constructor(private val plugin: RPG) : CommandExecutor {
             when {
                 args[0].equals("gui", ignoreCase = true) -> {
                     inv = Bukkit.createInventory(null, 54, "Item")
-                    inv.setItem(0, ItemUtil.itemcreate("test", Material.STONE, 2, "aaa", "bbb"))
+                    inv.setItem(0, ItemUtil.itemcreate("test", Material.STONE, ""))
                     p.openInventory(inv)
                 }
 
                 args[0].equals("spawnblock", ignoreCase = true) -> {
-                    val keyitem: ItemStack = ItemUtil.itemcreate("スポーンブロック設置",Material.STICK,0,"","")
+                    val keyitem: ItemStack = ItemUtil.itemcreate("スポーンブロック設置", Material.STICK, "")
                     p.inventory.addItem(keyitem)
                 }
                 args[0].equals("test", ignoreCase = true) -> {
