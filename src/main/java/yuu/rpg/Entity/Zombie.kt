@@ -10,13 +10,6 @@ import net.minecraft.server.v1_12_R1.NBTTagList
 import net.minecraft.server.v1_12_R1.NBTTagCompound
 import java.lang.reflect.Array.setShort
 
-
-
-
-
-
-
-
 public open class Zombie : EntityZombie {
 
     constructor(loc: Location) : super((loc.getWorld() as CraftWorld).handle) {

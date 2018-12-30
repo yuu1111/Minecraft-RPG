@@ -1,4 +1,4 @@
-package yuu.rpg
+package yuu.rpg.Item
 
 import org.bukkit.ChatColor
 import org.bukkit.Material
@@ -11,8 +11,7 @@ import java.util.ArrayList
 
 object ItemUtil {
 
-
-    fun ItemCreate(name: String, type: Material, loreline: Int, lore1: String, lore2: String): ItemStack {
+    fun itemcreate(name: String, type: Material, loreline: Int, lore1: String, lore2: String): ItemStack {
 
         val lores = ArrayList<String>()
 
