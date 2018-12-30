@@ -1,4 +1,4 @@
-package yuu.rpg.Actionbar
+package yuu.rpg.actionbar
 
 import org.bukkit.entity.Player
 

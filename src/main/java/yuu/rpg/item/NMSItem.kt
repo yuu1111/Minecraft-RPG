@@ -1,4 +1,4 @@
-package yuu.rpg.Item
+package yuu.rpg.item
 
 
 import net.minecraft.server.v1_12_R1.ItemStack

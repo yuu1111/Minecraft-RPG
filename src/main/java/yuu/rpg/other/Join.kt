@@ -1,4 +1,4 @@
-package yuu.rpg.Other
+package yuu.rpg.other
 
 import org.bukkit.Location
 import org.bukkit.Material
@@ -8,7 +8,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.BookMeta
-import yuu.rpg.Config.CustomConfig
+import yuu.rpg.config.CustomConfig
 import yuu.rpg.RPG
 
 class Join internal constructor(private val plugin: RPG) : Listener {
@@ -26,8 +26,8 @@ class Join internal constructor(private val plugin: RPG) : Listener {
         val p = e.player
         val id = p.uniqueId
         val job = config!!.getString("UUID.$id.Job")
-        val x = config.getString("UUID.$id.Spawn.x")
-        if (x == null) {
+
+        if (config.getString("UUID.$id.Spawn.x") == null || config.getString("UUID.$id.Spawn.y") == null || config.getString("UUID.$id.Spawn.z") == null) {
             config.set("UUID.$id.Spawn.x", -315)
             config.set("UUID.$id.Spawn.y", 67)
             config.set("UUID.$id.Spawn.z", -444)
@@ -36,8 +36,7 @@ class Join internal constructor(private val plugin: RPG) : Listener {
         if (job == null) {
             config.set("UUID.$id.Job", "Wanderer")
             uuid.saveConfig()
-            val spawnpoint = Location(p.location.world, -315.0, 67.0, -444.0)
-            p.teleport(spawnpoint)
+            p.teleport(Location(p.location.world, config.getDouble("UUID.$id.Spawn.x"), config.getDouble("UUID.$id.Spawn.y"), config.getDouble("UUID.$id.Spawn.z")))
 
             val item = ItemStack(Material.WRITTEN_BOOK)
             val meta = item.itemMeta as BookMeta
@@ -48,12 +47,6 @@ class Join internal constructor(private val plugin: RPG) : Listener {
                     "戦士\n\n基本的な剣などの武器を扱える職業です\n高い筋力を生かして弓を高い威力で使えます\nccc")
             item.itemMeta = meta
             p.inventory.addItem(item)
-        }
-        var hp = config.getString("UUID.$id.Lv.$job.HP")
-        if (hp == null) {
-            config.set("UUID.$id.Lv.$job.HP", 20)
-            config.set("UUID.$id.Lv.$job.MP", 20)
-
         }
     }
 }

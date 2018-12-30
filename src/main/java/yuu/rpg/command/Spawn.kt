@@ -1,4 +1,4 @@
-package yuu.rpg.Command
+package yuu.rpg.command
 
 import org.bukkit.Location
 import org.bukkit.command.Command
@@ -6,7 +6,7 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.entity.Player
-import yuu.rpg.Config.CustomConfig
+import yuu.rpg.config.CustomConfig
 import yuu.rpg.RPG
 
 class Spawn internal constructor(private val plugin: RPG) : CommandExecutor {

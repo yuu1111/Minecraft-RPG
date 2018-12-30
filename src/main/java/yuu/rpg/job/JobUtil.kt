@@ -1,8 +1,8 @@
-package yuu.rpg.Job
+package yuu.rpg.job
 
 object JobUtil {
 
-    fun jobjptoen(str :String):String {
+    fun joben(str :String):String {
 
         var job = ""
         when (str) {
@@ -31,7 +31,7 @@ object JobUtil {
         return job;
     }
 
-    fun jobentojp(str :String):String {
+    fun jobjp(str :String):String {
 
         var job = ""
         when (str) {

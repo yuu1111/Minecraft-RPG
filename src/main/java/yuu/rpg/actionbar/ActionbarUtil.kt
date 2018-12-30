@@ -1,7 +1,6 @@
-package yuu.rpg.Actionbar
+package yuu.rpg.actionbar
 
 import net.minecraft.server.v1_12_R1.ChatMessageType
-import net.minecraft.server.v1_12_R1.IChatBaseComponent;
 import net.minecraft.server.v1_12_R1.PacketPlayOutChat;
 import net.minecraft.server.v1_12_R1.IChatBaseComponent.ChatSerializer;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;

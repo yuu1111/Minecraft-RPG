@@ -1,4 +1,4 @@
-package yuu.rpg.Entity
+package yuu.rpg.entity
 
 import net.minecraft.server.v1_12_R1.Entity
 import net.minecraft.server.v1_12_R1.EntityTypes

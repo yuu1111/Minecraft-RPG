@@ -1,4 +1,4 @@
-package yuu.rpg.Skill
+package yuu.rpg.skill
 
 import org.bukkit.Material
 import org.bukkit.Particle

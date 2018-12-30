@@ -1,4 +1,4 @@
-package yuu.rpg.SpawnBlock
+package yuu.rpg.spawnblock
 
 import net.minecraft.server.v1_12_R1.*
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld

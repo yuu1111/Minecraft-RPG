@@ -1,10 +1,14 @@
-package yuu.rpg.OPUtil
+package yuu.rpg.oputil
 
+import org.bukkit.Bukkit
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.entity.Player
+import org.bukkit.event.EventHandler
+import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.inventory.InventoryClickEvent
-import yuu.rpg.Config.CustomConfig
+import org.bukkit.inventory.Inventory
+import yuu.rpg.config.CustomConfig
 import yuu.rpg.RPG
 
 class OPGUIClick internal constructor(private val plugin: RPG) : Listener {
@@ -16,21 +20,25 @@ class OPGUIClick internal constructor(private val plugin: RPG) : Listener {
     private val uuid: CustomConfig = CustomConfig(plugin, "UUID.yml")
     private val config: FileConfiguration? = uuid.getConfig()
 
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     fun onInventoryClickEvent(e: InventoryClickEvent) {
 
         val p = e.whoClicked as Player
         val inv = e.inventory
-        val name = inv.name
+        val name = e.inventory.name
         val slot = e.slot
         val item =  p.inventory.itemInMainHand
-        if (name == "OPGUISpawnBlock1") {
-            e.isCancelled
+        val gui_spawnblcok: Inventory
+        if (name == "OPGUI_MainMenu") {
             when (slot) {
 
                 0 -> {
-                    p.inventory.remove(item)
-                    item.lore!!.set(0,"ゾンビ")
-                    p.inventory.addItem(item)
+
+                    gui_spawnblcok = Bukkit.createInventory(null, 54, "OPGUI_SpawnBlock1")
+                    p.openInventory(gui_spawnblcok)
+                    e.isCancelled = true
+
+
                 }
             }
         }

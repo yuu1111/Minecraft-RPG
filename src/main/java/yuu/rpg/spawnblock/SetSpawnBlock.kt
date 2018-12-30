@@ -1,4 +1,4 @@
-package yuu.rpg.SpawnBlock
+package yuu.rpg.spawnblock
 
 import net.minecraft.server.v1_12_R1.*
 import org.bukkit.Material
@@ -8,11 +8,11 @@ import org.bukkit.event.EventPriority
 import org.bukkit.event.block.Action
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.inventory.ItemStack
-import yuu.rpg.Item.ItemUtil
+import yuu.rpg.item.ItemUtil
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.event.Listener
-import yuu.rpg.Config.CustomConfig
-import yuu.rpg.Item.NMSItem
+import yuu.rpg.config.CustomConfig
+import yuu.rpg.item.NMSItem
 import yuu.rpg.RPG
 
 

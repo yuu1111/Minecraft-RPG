@@ -1,12 +1,10 @@
-package yuu.rpg.Item
+package yuu.rpg.item
 
 import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
-import org.bukkit.inventory.meta.ItemMeta
-import org.bukkit.plugin.java.JavaPlugin
 
 import java.util.ArrayList
 
@@ -16,18 +14,20 @@ object ItemUtil {
 
         val lores = ArrayList<String>()
 
-        if(!lore[0].isEmpty())
+        if(lore[0].isNotEmpty()) {
             lores.add(lore[0])
-
-        if(!lore[1].isEmpty())
+        }
+        if(lore[1].isNotEmpty()) {
             lores.add(lore[1])
-
-        if(!lore[2].isEmpty())
+        }
+        if(lore[2].isNotEmpty()) {
             lores.add(lore[2])
-
+        }
         val item = ItemStack(type)
         val im = item.itemMeta
-        im.lore = lores
+        if(lores.isNotEmpty()){
+            im.lore = lores
+        }
         im.displayName = ChatColor.RESET.toString() + name
         item.itemMeta = im
 

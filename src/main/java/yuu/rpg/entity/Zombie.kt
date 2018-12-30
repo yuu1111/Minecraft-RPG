@@ -1,14 +1,8 @@
-package yuu.rpg.Entity
+package yuu.rpg.entity
 
-import com.sun.awt.SecurityWarning.setPosition
 import net.minecraft.server.v1_12_R1.EntityZombie
-import net.minecraft.server.v1_12_R1.World
 import org.bukkit.Location
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld
-import yuu.rpg.RPG
-import net.minecraft.server.v1_12_R1.NBTTagList
-import net.minecraft.server.v1_12_R1.NBTTagCompound
-import java.lang.reflect.Array.setShort
 
 public open class Zombie : EntityZombie {
 

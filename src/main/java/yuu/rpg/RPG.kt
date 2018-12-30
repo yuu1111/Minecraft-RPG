@@ -1,19 +1,18 @@
 package yuu.rpg
 
 import org.bukkit.plugin.java.JavaPlugin
-import yuu.rpg.Command.JobCommand
-import yuu.rpg.Command.Spawn
-import yuu.rpg.Config.CustomConfig
-import yuu.rpg.Entity.CustomEntities
-import yuu.rpg.Job.JobSkill
-import yuu.rpg.Job.SignJob
-import yuu.rpg.OPUtil.OPGUIClick
-import yuu.rpg.OPUtil.OpUtil
-import yuu.rpg.Other.DeathRespawn
-import yuu.rpg.Other.Join
-import yuu.rpg.Skill.Skill
-import yuu.rpg.SpawnBlock.SetSpawnBlock
-
+import yuu.rpg.command.JobCommand
+import yuu.rpg.command.Spawn
+import yuu.rpg.config.CustomConfig
+import yuu.rpg.entity.CustomEntities
+import yuu.rpg.job.LevelUP
+import yuu.rpg.job.SignJob
+import yuu.rpg.oputil.OPGUIClick
+import yuu.rpg.oputil.OPUtil
+import yuu.rpg.other.DeathRespawn
+import yuu.rpg.other.Join
+import yuu.rpg.skill.Skill
+import yuu.rpg.spawnblock.SetSpawnBlock
 
 class RPG : JavaPlugin() {
 
@@ -26,14 +25,14 @@ class RPG : JavaPlugin() {
         Join(this)
         SignJob(this)
         DeathRespawn(this)
-        JobSkill(this)
+        LevelUP(this)
         Skill(this)
         SetSpawnBlock(this)
         OPGUIClick(this)
 
         getCommand("job").executor = JobCommand(this)
         getCommand("spawn").executor = Spawn(this)
-        getCommand("oputil").executor = OpUtil(this)
+        getCommand("oputil").executor = OPUtil(this)
     }
 
     override fun onDisable() {
