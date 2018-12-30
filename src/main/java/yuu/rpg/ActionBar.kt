@@ -7,10 +7,10 @@ import org.bukkit.entity.Player
 object ActionBar {
 
     fun sendActionBar(p: Player, message: String) {
-        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent(message))
+   //     p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent(message))
     }
 
     fun statusActionBar(p: Player, HP: String, MP: String) {
-        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent("HP:" + HP + "MP:" + MP))
+   //     p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent("HP:" + HP + "MP:" + MP))
     }
 }

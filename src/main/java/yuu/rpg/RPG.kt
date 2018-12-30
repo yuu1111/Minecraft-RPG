@@ -2,6 +2,7 @@ package yuu.rpg
 
 import org.bukkit.plugin.java.JavaPlugin
 import yuu.rpg.Entity.CustomEntities
+import yuu.rpg.SpawnBlock.SetSpawnBlock
 
 
 class RPG : JavaPlugin() {
@@ -17,6 +18,7 @@ class RPG : JavaPlugin() {
         DeathRespawn(this)
         JobSkill(this)
         Skill(this)
+        SetSpawnBlock(this)
 
         getCommand("job").executor = JobCommand(this)
         getCommand("spawn").executor = Spawn(this)

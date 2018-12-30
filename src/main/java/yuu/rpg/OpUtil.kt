@@ -24,8 +24,12 @@ import org.bukkit.event.entity.CreatureSpawnEvent
 import org.junit.internal.matchers.Each.each
 import java.lang.reflect.Array.setShort
 import io.reactivex.annotations.SchedulerSupport.CUSTOM
-
-
+import net.minecraft.server.v1_12_R1.NBTTagCompound
+import net.minecraft.server.v1_12_R1.Items
+import net.minecraft.server.v1_12_R1.NBTTagList
+import net.minecraft.server.v1_12_R1.TileEntityMobSpawner
+import net.minecraft.server.v1_12_R1.BlockPosition
+import org.bukkit.inventory.ItemStack
 
 
 class OpUtil internal constructor(private val plugin: RPG) : CommandExecutor {
@@ -49,59 +53,8 @@ class OpUtil internal constructor(private val plugin: RPG) : CommandExecutor {
                 }
 
                 args[0].equals("spawnblock", ignoreCase = true) -> {
-                    val x = args[1]
-                    val y = args[2]
-                    val z = args[3]
-                    val w = p.world;
-                    val blockPos = BlockPosition(x.toDouble(), y.toDouble(), z.toDouble())
-                    val spawner = (w as CraftWorld).handle.getTileEntity(blockPos)
-                    val spawnerTag = spawner!!.d()
-                    //スポーンする範囲?
-                    spawnerTag.setShort("SpawnRange", 20.toShort())
-                    //スポーンする最大数?
-                    spawnerTag.setShort("MaxNearbyEntities", 5.toShort())
-                    val armorList = NBTTagList()
-                    val mainHand = NBTTagCompound()
-                    val offHand = NBTTagCompound()
-                    val item = ItemUtil.ItemCreate("test", Material.STONE, 2, "aaa", "bbb")
-
-                    mainHand.setString("id", "minecraft:diamond_sword")
-                    mainHand.setShort("Count", 1.toShort())
-
-                    val enchantments = NBTTagList()
-                    val sharpness3 = NBTTagCompound()
-                    sharpness3.setShort("id", 16.toShort())
-                    sharpness3.setShort("lvl", 3.toShort())
-                    enchantments.add(sharpness3)
-
-                    val ench = NBTTagCompound()
-                    ench.set("ench", enchantments)
-                    mainHand.set("tag", ench)
-
-                    val helmet = NBTTagCompound()
-                    val chestplate = NBTTagCompound()
-                    val leggings = NBTTagCompound()
-                    val boots = NBTTagCompound()
-
-                    helmet.setString("id", "minecraft:leather_helmet")
-                    helmet.setShort("Count", 1.toShort())
-                    chestplate.setString("id", "minecraft:golden_chestplate")
-                    chestplate.setShort("Count", 1.toShort())
-//we're leaving the leg slot empty
-                    boots.setString("id", "minecraft:iron_boots")
-                    boots.setShort("Count", 1.toShort())
-                    armorList.add(boots)
-                    armorList.add(leggings)
-                    armorList.add(chestplate)
-                    armorList.add(helmet)
-
-                    val spawnData = NBTTagCompound()
-                    var item2 = ItemStack(Items.STICK)
-                    spawnData.set("ArmorItems", armorList)
-                    spawnerTag.set("SpawnData", spawnData)
-
-                    spawner.load(spawnerTag);
-
+                    val keyitem: ItemStack = ItemUtil.ItemCreate("スポーンブロック設置",Material.STICK,0,"","")
+                    p.inventory.addItem(keyitem)
                 }
                 args[0].equals("test", ignoreCase = true) -> {
                     val x = args[1].toDouble()
