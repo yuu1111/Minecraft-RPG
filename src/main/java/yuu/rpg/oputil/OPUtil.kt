@@ -1,6 +1,7 @@
 package yuu.rpg.oputil
 
 import org.bukkit.Bukkit
+import org.bukkit.ChatColor
 import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.command.Command
@@ -15,6 +16,7 @@ import org.bukkit.inventory.ItemStack
 import yuu.rpg.config.CustomConfig
 import yuu.rpg.item.ItemUtil
 import yuu.rpg.RPG
+import yuu.rpg.item.ItemBuilder
 
 
 class OPUtil internal constructor(private val plugin: RPG) : CommandExecutor {
@@ -33,13 +35,13 @@ class OPUtil internal constructor(private val plugin: RPG) : CommandExecutor {
             when {
                 args[0].equals("gui", ignoreCase = true) -> {
                     inv = Bukkit.createInventory(null, 54, "OPGUI_MainMenu")
-                    inv.setItem(0, ItemUtil.itemcreate("OPGUI_SpawnBlock1", Material.STONE,"","",""))
+                    inv.setItem(0, ItemUtil.itemcreate("OPGUI_SpawnBlock1", Material.STONE,"",""))
                     p.openInventory(inv)
                 }
 
                 args[0].equals("spawnblock", ignoreCase = true) -> {
 
-                    val keyitem: ItemStack = ItemUtil.itemcreate("スポーンブロック設置", Material.STICK, args[1])
+                    val keyitem: ItemStack = ItemBuilder(Material.STICK).amount(1).name(ChatColor.RESET.toString() + "スポーンブロック設置").lore(ChatColor.RESET.toString() + "aaa").lore(ChatColor.RESET.toString() + "bbb").make()
                     p.inventory.addItem(keyitem)
                 }
         /*        args[0].equals("test", ignoreCase = true) -> {

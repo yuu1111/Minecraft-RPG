@@ -4,9 +4,13 @@ import net.minecraft.server.v1_12_R1.*
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld
 import org.bukkit.entity.Player
 
+
 object SpawnBlock {
 
-    public fun NMSSpawnBlock(p: Player, blockPos: BlockPosition,mobid:String,range:Int,max:Int,mainhanditem: NBTTagCompound, offhanditem: NBTTagCompound) {
+
+   private val handList = NBTTagList()
+
+    fun NMSSpawnBlock(p: Player, blockPos: BlockPosition, mobid: String, range: Int, max: Int, mainhanditem: NBTTagCompound, offhanditem: NBTTagCompound) {
 
 
         val spawner = (p.world as CraftWorld).handle.getTileEntity(blockPos) as TileEntityMobSpawner?
@@ -18,7 +22,7 @@ object SpawnBlock {
         val spawnData = NBTTagCompound()
 
         spawnData.setString("id", mobid);
-        handitem(spawnData,mainhanditem,offhanditem)
+        handitem(spawnData, mainhanditem, offhanditem)
 
         spawnerTag.set("SpawnData", spawnData)
         spawner.load(spawnerTag);
@@ -26,11 +30,11 @@ object SpawnBlock {
 
     }
 
-    fun handitem(spawnData:NBTTagCompound, mainhand:NBTTagCompound, offhand:NBTTagCompound) {
+    private fun handitem(spawnData: NBTTagCompound, mainhand: NBTTagCompound, offhand: NBTTagCompound) {
 
-        val handList = NBTTagList()
         handList.add(mainhand);
         handList.add(offhand)
         spawnData.set("HandItems", handList);
     }
 }
+

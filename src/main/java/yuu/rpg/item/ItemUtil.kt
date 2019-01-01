@@ -10,37 +10,31 @@ import java.util.ArrayList
 
 object ItemUtil {
 
-    fun itemcreate(name: String, type: Material,vararg lore: String): ItemStack {
+    fun itemcreate(name: String, type: Material, lore1: String, lore2: String): ItemStack {
 
         val lores = ArrayList<String>()
 
-        if(lore[0].isNotEmpty()) {
-            lores.add(lore[0])
-        }
-        if(lore[1].isNotEmpty()) {
-            lores.add(lore[1])
-        }
-        if(lore[2].isNotEmpty()) {
-            lores.add(lore[2])
-        }
+        if (lore1.isNotEmpty())
+            lores.add(lore1)
+
+        if (lore2.isNotEmpty())
+            lores.add(lore2)
+
         val item = ItemStack(type)
         val im = item.itemMeta
-        if(lores.isNotEmpty()){
-            im.lore = lores
-        }
+        im.lore = lores
         im.displayName = ChatColor.RESET.toString() + name
         item.itemMeta = im
 
         return item
     }
 
-    fun addenc(item: ItemStack, enc: Enchantment, enclv: Int,flag:Boolean): ItemStack {
+    fun addenc(item: ItemStack, enc: Enchantment, enclv: Int, flag: Boolean): ItemStack {
 
         item.addUnsafeEnchantment(enc, enclv)
-        if(flag) {
+        if (flag) {
             item.addItemFlags(ItemFlag.HIDE_ENCHANTS)
         }
         return item
     }
-
 }
