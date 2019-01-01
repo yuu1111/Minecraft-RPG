@@ -13,28 +13,28 @@ import yuu.rpg.RPG
 
 class Skill internal constructor(private val plugin: RPG) : Listener {
 
-    init {
-        plugin.server.pluginManager.registerEvents(this, plugin)
-    }
+                init {
+                    plugin.server.pluginManager.registerEvents(this, plugin)
+                }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    fun onPlayerInteractEvent(e: PlayerInteractEvent) {
+                @EventHandler(priority = EventPriority.HIGHEST)
+                fun onPlayerInteractEvent(e: PlayerInteractEvent) {
 
-        if (e.action != Action.RIGHT_CLICK_BLOCK) return
+                    if (e.action != Action.RIGHT_CLICK_BLOCK) return
 
-        val p = e.player
-        if (p.inventory.itemInMainHand.type == Material.WOOD_SWORD) {
-            val loc = e.clickedBlock.location
+                    val p = e.player
+                    if (p.inventory.itemInMainHand.type == Material.WOOD_SWORD) {
+                        val loc = e.clickedBlock.location
 
-            loc.world.spawnParticle(
-                    Particle.VILLAGER_HAPPY,
-                    loc,
-                    500,
-                    5.0, // 散開させるXの範囲
-                    1.0, // 散開させるYの範囲
-                    5.0, // 散開させるZの範囲
-                    5.0 // 速度?
-            );
+                        loc.world.spawnParticle(
+                                Particle.VILLAGER_HAPPY,
+                                loc,
+                                500,
+                                5.0, // 散開させるXの範囲
+                                1.0, // 散開させるYの範囲
+                                5.0, // 散開させるZの範囲
+                                5.0 // 速度?
+                        );
 
             val list = p.getNearbyEntities(5.0, 1.0, 5.0)
             for (i in list.indices) {

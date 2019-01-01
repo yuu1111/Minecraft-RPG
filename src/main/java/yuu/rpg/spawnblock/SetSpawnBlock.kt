@@ -43,11 +43,11 @@ class SetSpawnBlock internal constructor(private val plugin: RPG) : Listener {
 
                 val loc = clickedBlock.location
                 val blockPos = BlockPosition(loc.blockX, loc.blockY, loc.blockZ)
-                if(ItemDB.SpawnBlockSet.lore.toString() == "ゾンビ") {
-                    val mainHand = NMSItem.NMSItemChange(ItemUtil.itemcreate("テスト", Material.COAL,"","")).save(NBTTagCompound())
+                if (ItemDB.SpawnBlockSet.lore.toString() == "ゾンビ") {
+                    val mainHand = NMSItem.NMSItemChange(ItemUtil.itemcreate("テスト", Material.COAL, "", "")).save(NBTTagCompound())
                     val offHand = NBTTagCompound()
 
-                   SpawnBlock.NMSSpawnBlock(p, blockPos, "zombie", 5, 10, mainHand, offHand)
+                    SpawnBlock.NMSSpawnBlock(p, blockPos, "zombie", 5, 10, mainHand, offHand)
 
                 }
             }

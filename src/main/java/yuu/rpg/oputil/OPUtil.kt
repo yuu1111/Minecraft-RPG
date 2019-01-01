@@ -17,6 +17,7 @@ import yuu.rpg.config.CustomConfig
 import yuu.rpg.item.ItemUtil
 import yuu.rpg.RPG
 import yuu.rpg.item.ItemBuilder
+import yuu.rpg.item.ItemDB
 
 
 class OPUtil internal constructor(private val plugin: RPG) : CommandExecutor {
@@ -41,8 +42,8 @@ class OPUtil internal constructor(private val plugin: RPG) : CommandExecutor {
 
                 args[0].equals("spawnblock", ignoreCase = true) -> {
 
-                    val keyitem: ItemStack = ItemBuilder(Material.STICK).amount(1).name(ChatColor.RESET.toString() + "スポーンブロック設置").lore(ChatColor.RESET.toString() + "aaa").lore(ChatColor.RESET.toString() + "bbb").make()
-                    p.inventory.addItem(keyitem)
+
+                    p.inventory.addItem(ItemDB.SpawnBlockSet)
                 }
         /*        args[0].equals("test", ignoreCase = true) -> {
                     val x = args[1].toDouble()

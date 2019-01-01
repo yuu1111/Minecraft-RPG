@@ -12,7 +12,6 @@ object SpawnBlock {
 
     fun NMSSpawnBlock(p: Player, blockPos: BlockPosition, mobid: String, range: Int, max: Int, mainhanditem: NBTTagCompound, offhanditem: NBTTagCompound) {
 
-
         val spawner = (p.world as CraftWorld).handle.getTileEntity(blockPos) as TileEntityMobSpawner?
         val spawnerTag = spawner!!.d()
 
