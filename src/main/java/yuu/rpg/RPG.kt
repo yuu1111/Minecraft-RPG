@@ -18,7 +18,7 @@ class RPG : JavaPlugin() {
 
     override fun onEnable() {
 
-        CustomEntities.registerEntities()
+       // CustomEntities.registerEntities()
         saveDefaultConfig()
         CustomConfig(this, "UUID.yml").saveDefaultConfig()
 
@@ -36,6 +36,6 @@ class RPG : JavaPlugin() {
     }
 
     override fun onDisable() {
-        CustomEntities.unregisterEntities()
+      //  CustomEntities.unregisterEntities()
     }
 }

@@ -1,7 +1,6 @@
 package yuu.rpg.spawnblock
 
 import net.minecraft.server.v1_12_R1.*
-import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -11,12 +10,14 @@ import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.inventory.ItemStack
 import yuu.rpg.item.ItemUtil
 import org.bukkit.configuration.file.FileConfiguration
+import org.bukkit.craftbukkit.v1_12_R1.CraftWorld
 import org.bukkit.event.Listener
 import yuu.rpg.config.CustomConfig
 import yuu.rpg.item.NMSItem
 import yuu.rpg.RPG
-import yuu.rpg.item.ItemBuilder
-import yuu.rpg.item.ItemDB
+import net.minecraft.server.v1_12_R1.Block.getByCombinedId
+
+
 
 
 class SetSpawnBlock internal constructor(private val plugin: RPG) : Listener {
@@ -29,6 +30,8 @@ class SetSpawnBlock internal constructor(private val plugin: RPG) : Listener {
     private val uuid: CustomConfig = CustomConfig(plugin, "UUID.yml")
     private val config: FileConfiguration? = uuid.getConfig()
 
+
+
     @EventHandler(priority = EventPriority.HIGHEST)
     fun onPlayerInteractEvent(e: PlayerInteractEvent) {
 
@@ -36,21 +39,19 @@ class SetSpawnBlock internal constructor(private val plugin: RPG) : Listener {
 
         val p: Player = e.player
         val handitem: ItemStack = p.inventory.itemInMainHand
-        if (handitem == ItemDB.SpawnBlockSet) {
+       // if (handitem == ItemDB.SpawnBlockSet) {
             val clickedBlock = e.clickedBlock
             val material = clickedBlock.type
             if (material == Material.MOB_SPAWNER) {
 
                 val loc = clickedBlock.location
                 val blockPos = BlockPosition(loc.blockX, loc.blockY, loc.blockZ)
-                if (ItemDB.SpawnBlockSet.lore.toString() == "ゾンビ") {
-                    val mainHand = NMSItem.NMSItemChange(ItemUtil.itemcreate("テスト", Material.COAL, "", "")).save(NBTTagCompound())
-                    val offHand = NBTTagCompound()
+           //     if (ItemDB.SpawnBlockSet.lore.toString() == "ゾンビ") {
+                val spawner = (loc.world as CraftWorld).handle.getTileEntity(blockPos)
 
-                    SpawnBlock.NMSSpawnBlock(p, blockPos, "zombie", 5, 10, mainHand, offHand)
-
-                }
-            }
+                spawner!!.load( SpawnBlockBuilder(spawner).range(10).maxentities(10).mob("zombie").set().tag())
+                // }
+         //   }
         }
     }
 }

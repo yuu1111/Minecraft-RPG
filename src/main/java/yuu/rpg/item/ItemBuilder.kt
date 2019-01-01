@@ -46,7 +46,7 @@ class ItemBuilder {
      *
      * @param itemStack the [ItemStack] to initialize the instance with.
      * @since 1.0
-     *
+     */
     constructor(itemStack: ItemStack) {
         item = itemStack
         itemM = item.itemMeta
@@ -60,7 +60,7 @@ class ItemBuilder {
     constructor() {
         item = ItemStack(Material.AIR)
         itemM = item.itemMeta
-    }*/
+    }
 
     /**
      * Changes the Material type of the [ItemStack]
