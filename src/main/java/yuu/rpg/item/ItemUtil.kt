@@ -1,28 +1,24 @@
-package yuu.rpg
+package yuu.rpg.item
 
 import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.enchantments.Enchantment
+import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
-import org.bukkit.inventory.meta.ItemMeta
-import org.bukkit.plugin.java.JavaPlugin
 
 import java.util.ArrayList
 
 object ItemUtil {
 
-
-    fun ItemCreate(name: String, type: Material, loreline: Int, lore1: String, lore2: String): ItemStack {
+    fun itemcreate(name: String, type: Material, lore1: String, lore2: String): ItemStack {
 
         val lores = ArrayList<String>()
 
-        if (loreline == 1) {
+        if (lore1.isNotEmpty())
             lores.add(lore1)
 
-        } else if (loreline == 2) {
-            lores.add(lore1)
+        if (lore2.isNotEmpty())
             lores.add(lore2)
-        }
 
         val item = ItemStack(type)
         val im = item.itemMeta
@@ -33,10 +29,12 @@ object ItemUtil {
         return item
     }
 
-    fun addenc(item: ItemStack, enc: Enchantment, enclv: Int): ItemStack {
+    fun addenc(item: ItemStack, enc: Enchantment, enclv: Int, flag: Boolean): ItemStack {
 
         item.addUnsafeEnchantment(enc, enclv)
-
+        if (flag) {
+            item.addItemFlags(ItemFlag.HIDE_ENCHANTS)
+        }
         return item
     }
 }

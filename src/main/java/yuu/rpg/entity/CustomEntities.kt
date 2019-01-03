@@ -1,4 +1,4 @@
-package yuu.rpg.Entity
+package yuu.rpg.entity
 
 import net.minecraft.server.v1_12_R1.Entity
 import net.minecraft.server.v1_12_R1.EntityTypes
@@ -8,7 +8,7 @@ import org.bukkit.entity.EntityType
 
 enum class CustomEntities private constructor(val name1: String, val id: Int, val entityType: EntityType, private val nmsClass: Class<out Entity>, private val customClass: Class<out Entity>) {
 
-    MYSUPERZOMBIE("testZombie", 54, EntityType.ZOMBIE, EntityZombie::class.java, Zombie::class.java);
+    ZOMBIE1("testZombie", 54, EntityType.ZOMBIE, EntityZombie::class.java, Zombie::class.java);
 
     private val key: MinecraftKey
     private val oldKey: MinecraftKey?
