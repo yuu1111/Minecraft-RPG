@@ -1,8 +1,6 @@
-package yuu.rpg.oputil
+package yuu.rpg.command
 
 import org.bukkit.Bukkit
-import org.bukkit.ChatColor
-import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
@@ -10,13 +8,8 @@ import org.bukkit.command.CommandSender
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
-import org.bukkit.craftbukkit.v1_12_R1.CraftWorld
-import org.bukkit.event.entity.CreatureSpawnEvent
-import org.bukkit.inventory.ItemStack
 import yuu.rpg.config.CustomConfig
-import yuu.rpg.item.ItemUtil
 import yuu.rpg.RPG
-import yuu.rpg.item.ItemBuilder
 import yuu.rpg.item.ItemDB
 
 
@@ -36,8 +29,8 @@ class OPUtil internal constructor(private val plugin: RPG) : CommandExecutor {
             when {
                 args[0].equals("gui", ignoreCase = true) -> {
                     inv = Bukkit.createInventory(null, 54, "OPGUI_MainMenu")
-                    inv.setItem(10, ItemUtil.itemcreate("OPGUI_SpawnBlock1", Material.STONE,"",""))
-
+                    inv.setItem(10, ItemDB.GUI_SpawnBlock)
+                    inv.setItem(10, ItemDB.GUI_Material)
                     p.openInventory(inv)
                 }
         /*        args[0].equals("test", ignoreCase = true) -> {

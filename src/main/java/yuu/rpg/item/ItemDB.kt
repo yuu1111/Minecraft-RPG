@@ -1,10 +1,9 @@
 package yuu.rpg.item
 
-import net.milkbowl.vault.chat.Chat
 import org.bukkit.ChatColor
 import org.bukkit.Material
 import org.bukkit.inventory.ItemFlag
-import org.bukkit.inventory.ItemStack
+import yuu.rpg.Builder.ItemBuilder
 
 
 val AQUA = ChatColor.AQUA

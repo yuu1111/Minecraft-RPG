@@ -1,7 +1,8 @@
-package yuu.rpg.item
+package yuu.rpg.Builder
 
 import org.bukkit.Color
 import org.bukkit.Material
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
@@ -345,6 +346,10 @@ class ItemBuilder {
      */
     fun make(): ItemStack {
         return item
+    }
+
+    fun nmsmake(item: org.bukkit.inventory.ItemStack): net.minecraft.server.v1_12_R1.ItemStack {
+        return CraftItemStack.asNMSCopy(item)
     }
 
 }

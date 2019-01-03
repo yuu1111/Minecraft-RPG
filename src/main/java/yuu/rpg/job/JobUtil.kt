@@ -2,6 +2,8 @@ package yuu.rpg.job
 
 object JobUtil {
 
+
+
     fun joben(str :String):String {
 
         var job = ""
