@@ -36,14 +36,9 @@ class OPUtil internal constructor(private val plugin: RPG) : CommandExecutor {
             when {
                 args[0].equals("gui", ignoreCase = true) -> {
                     inv = Bukkit.createInventory(null, 54, "OPGUI_MainMenu")
-                    inv.setItem(0, ItemUtil.itemcreate("OPGUI_SpawnBlock1", Material.STONE,"",""))
+                    inv.setItem(10, ItemUtil.itemcreate("OPGUI_SpawnBlock1", Material.STONE,"",""))
+
                     p.openInventory(inv)
-                }
-
-                args[0].equals("spawnblock", ignoreCase = true) -> {
-
-
-                    p.inventory.addItem(ItemDB.SpawnBlockSet)
                 }
         /*        args[0].equals("test", ignoreCase = true) -> {
                     val x = args[1].toDouble()

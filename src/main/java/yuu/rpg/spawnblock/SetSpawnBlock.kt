@@ -16,8 +16,7 @@ import yuu.rpg.config.CustomConfig
 import yuu.rpg.item.NMSItem
 import yuu.rpg.RPG
 import net.minecraft.server.v1_12_R1.Block.getByCombinedId
-
-
+import yuu.rpg.item.ItemDB
 
 
 class SetSpawnBlock internal constructor(private val plugin: RPG) : Listener {
@@ -31,7 +30,6 @@ class SetSpawnBlock internal constructor(private val plugin: RPG) : Listener {
     private val config: FileConfiguration? = uuid.getConfig()
 
 
-
     @EventHandler(priority = EventPriority.HIGHEST)
     fun onPlayerInteractEvent(e: PlayerInteractEvent) {
 
@@ -39,19 +37,16 @@ class SetSpawnBlock internal constructor(private val plugin: RPG) : Listener {
 
         val p: Player = e.player
         val handitem: ItemStack = p.inventory.itemInMainHand
-       // if (handitem == ItemDB.SpawnBlockSet) {
-            val clickedBlock = e.clickedBlock
-            val material = clickedBlock.type
-            if (material == Material.MOB_SPAWNER) {
+        val clickedBlock = e.clickedBlock
+        val material = clickedBlock.type
+        if (material == Material.MOB_SPAWNER) {
 
-                val loc = clickedBlock.location
-                val blockPos = BlockPosition(loc.blockX, loc.blockY, loc.blockZ)
-           //     if (ItemDB.SpawnBlockSet.lore.toString() == "ゾンビ") {
+            val loc = clickedBlock.location
+            val blockPos = BlockPosition(loc.blockX, loc.blockY, loc.blockZ)
+            if (ItemDB.SpawnBlockSet_Zombie == handitem) {
                 val spawner = (loc.world as CraftWorld).handle.getTileEntity(blockPos)
-
-                spawner!!.load( SpawnBlockBuilder(spawner).range(10).maxentities(10).mob("zombie").set().tag())
-                // }
-         //   }
+                spawner!!.load(SpawnBlockBuilder(spawner).range(10).maxentities(10).mob("zombie").set().tag())
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ package yuu.rpg.item
 import org.bukkit.Color
 import org.bukkit.Material
 import org.bukkit.enchantments.Enchantment
+import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.ItemMeta
 import org.bukkit.inventory.meta.LeatherArmorMeta
@@ -271,6 +272,10 @@ class ItemBuilder {
         return this
     }
 
+    fun additemflag(flag:ItemFlag): ItemBuilder {
+        meta().addItemFlags(flag)
+        return this
+    }
     /**
      * Sets the [Color] of any LEATHER_ARMOR [Material] types of the [ItemStack]
      *
