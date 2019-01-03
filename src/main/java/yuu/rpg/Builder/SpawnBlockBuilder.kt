@@ -1,17 +1,14 @@
-package yuu.rpg.spawnblock
+package yuu.rpg.Builder
 
 import net.minecraft.server.v1_12_R1.*
-import org.bukkit.Location
-import org.bukkit.Material
-import org.bukkit.craftbukkit.v1_12_R1.CraftWorld
-import org.bukkit.craftbukkit.v1_12_R1.util.CraftMagicNumbers
-import yuu.rpg.item.ItemBuilder
+import yuu.rpg.spawnblock.SpawnBlock
 
 
 class SpawnBlockBuilder {
 
     private val spawnerTag: NBTTagCompound
     private val spawnData = NBTTagCompound()
+    private val handList = NBTTagList()
 
     constructor(spawner: TileEntity?) {
         spawnerTag = spawner!!.d()
@@ -29,6 +26,13 @@ class SpawnBlockBuilder {
 
     fun mob(mobid: String): SpawnBlockBuilder {
         spawnData.setString("id", mobid)
+        return this
+    }
+
+    fun handitem(mainhand: NBTTagCompound, offhand: NBTTagCompound): SpawnBlockBuilder {
+        handList.add(mainhand);
+        handList.add(offhand)
+        spawnData.set("HandItems",handList);
         return this
     }
 

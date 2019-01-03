@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerInteractEvent
 import yuu.rpg.config.CustomConfig
 import yuu.rpg.RPG
 
-class DeathRespawn internal constructor(private val plugin: RPG) : Listener {
+class Respawn internal constructor(private val plugin: RPG) : Listener {
 
     init {
         plugin.server.pluginManager.registerEvents(this, plugin)

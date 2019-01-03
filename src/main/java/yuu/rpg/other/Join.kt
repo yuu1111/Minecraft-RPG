@@ -17,11 +17,12 @@ class Join internal constructor(private val plugin: RPG) : Listener {
         plugin.server.pluginManager.registerEvents(this, plugin)
     }
 
-    val uuid: CustomConfig = CustomConfig(plugin, "UUID.yml")
+
 
     @EventHandler(priority = EventPriority.HIGHEST)
     fun onPlayerJoin(e: PlayerJoinEvent) {
 
+        val uuid = CustomConfig(plugin, "UUID.yml")
         val config = uuid.getConfig()
         val p = e.player
         val id = p.uniqueId
@@ -33,6 +34,7 @@ class Join internal constructor(private val plugin: RPG) : Listener {
             config.set("UUID.$id.Spawn.z", -444)
             uuid.saveConfig()
         }
+
         if (job == null) {
             config.set("UUID.$id.Job", "Wanderer")
             uuid.saveConfig()

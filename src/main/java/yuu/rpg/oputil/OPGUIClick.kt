@@ -1,7 +1,6 @@
 package yuu.rpg.oputil
 
 import org.bukkit.Bukkit
-import org.bukkit.Material
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -12,7 +11,6 @@ import org.bukkit.inventory.Inventory
 import yuu.rpg.config.CustomConfig
 import yuu.rpg.RPG
 import yuu.rpg.item.ItemDB
-import yuu.rpg.item.ItemUtil
 
 class OPGUIClick internal constructor(private val plugin: RPG) : Listener {
 

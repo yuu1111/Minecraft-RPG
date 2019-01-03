@@ -4,11 +4,10 @@ import org.bukkit.plugin.java.JavaPlugin
 import yuu.rpg.command.JobCommand
 import yuu.rpg.command.Spawn
 import yuu.rpg.config.CustomConfig
-import yuu.rpg.entity.CustomEntities
 import yuu.rpg.job.LevelUP
 import yuu.rpg.job.SignJob
 import yuu.rpg.oputil.OPGUIClick
-import yuu.rpg.oputil.OPUtil
+import yuu.rpg.command.OPUtil
 import yuu.rpg.other.DeathRespawn
 import yuu.rpg.other.Join
 import yuu.rpg.skill.Skill
